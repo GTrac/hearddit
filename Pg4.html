@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>MyPage</title>
+    </head>
+    <style>
+div{
+    color:white;
+    background: black;
+    padding:10;
+    border:10px solid black;
+}
+h1{
+    text-align:left;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px;
+    display: inline-block;
+    border: none;
+    background:white;
+    border-radius: 5px;
+    text-align: center;
+    top:50%;
+    left:50%;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
+}
+.button {
+    background-color: black;
+    width:30%;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align:center;
+    text-decoration: none;
+    display:inline-flex;
+    margin: 15px 2px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    border-radius: 16px;
+}
+.buttn{
+    background-color: green;
+    width:18%;
+    float:right;
+    border-color: black;
+    color: black;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 15px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+.container {
+    color: white;
+    background-color: rgb(71, 70, 70);
+    border-color:rgb(71, 70, 70);
+    width: 900px;
+    height:500px;
+    top:100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:1%;
+    margin-bottom: 2%;
+    float: center;
+    border-radius: 16px;
+}
+
+    </style>
+    <body style="background-color:rgb(35, 34, 34);">
+        <div><b> <font size="10"><center>Hearddit</center></font></b></div>
+        <form id="form_login" style="border:1px solid rgb(44, 44, 44)">
+            <div class="container">
+              <h1><font size="7">Sign In</font></h1>
+<button class="button" style="display:block; margin: 0 auto;"><font size="3">Continue with Spotify</font></button>
+              <hr>
+              <label for="email"><b>Email Address or Username</b></label>
+              <input type="text" name="email" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" name="psw" required>
+              <button class="buttn" style="display:block; margin: 0 auto;"><font size="3"><B>Create Account</B></font> </button>
+            </div>
+          </form>
+    </body>
+</html>
