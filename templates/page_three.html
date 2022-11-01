@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title>Page 3</title>
+</head>
+
+<style>
+
+    /* The style that is needed to duplicate page 3 of the UI mockup. */
+    div {
+        color: white;
+        background: black;
+        border: 10x solid black;
+        padding:10;
+        text-align: center;
+    }
+
+    h1 {
+        text-align: left;
+        margin:auto;
+    }
+
+    input[type=text], input[type=email], input[type = password] {
+        display:inline-block;
+        background: white;
+        text-align: center;
+
+    }
+
+    .button_one {
+        background: green;
+        color:white;
+        float:right;
+        border-color: black;
+    }
+
+    .button_two {
+        background: black;
+        text-align: center;
+        color:white;
+    }
+
+    /* Where the form will be located */
+    .interior {
+        color:white;
+        background-color: rgb(71,70,70);
+        border-color: rgb(71, 70, 70);
+    }
+</style>
+
+
+<body style="background-color:rgba(35, 34, 35)">
+    <div><b><font size="15">Hearddit</font></b></div>
+    <br>
+    <h1>Create an Account</h1>
+
+    <br>
+
+    <!--For now, the form will not do anything when you press one of the two buttons. Form will not be perfect in terms of style.-->
+    <form id="account_creation" style="border:2px solid rgb(44,44,44)">
+        <div class="interior">
+            <button class="button_two" style="display: block;"><font size = "4">Continue with Spotify</font></button>
+            <br>
+
+            <label for="email_input">What's your email?</label><br>
+            <input type="email" id="email_input" name="email_input"><br>
+            <label for="email_confirm">Confirm your email.</label><br>
+            <input type="email" id="email_confirm" name="email_confirm"><br>
+            <label for="enter_username">Enter a username</label><br>
+            <input type="text" id="enter_username" name="enter_username"><br>
+            <label for="enter_password">Enter a password</label><br>
+            <input type="password" id="enter_password" name="enter_password"><br>
+
+            <button class="button_one" style="display:block;"><font size = "4">Create Account</font></button><br>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+<!--Source: https://www.w3schools.com/html/html_forms.asp-->
