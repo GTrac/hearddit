@@ -1,6 +1,11 @@
 from flask import Flask, redirect, render_template, request
+from models import db
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = \
+    'postgresql://postgres:HeardditAdminPassword@localhost:5432/hearddit'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 @app.get('/')
 def index():
