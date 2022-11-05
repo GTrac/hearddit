@@ -10,9 +10,9 @@ class users(db.Model):
 class subh(db.Model):
     sub_id = db.Column(db.Integer, primary_key=True)
     sub_name = db.Column(db.String(20), nullable=False)
-    sub_post = db.Column(db.String(255), db.ForeignKey('posts.post_id'), nullable=True)
+    sub_post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable=True)
     post = db.relationship('posts', backref='subs', lazy=True)
-    sub_post = db.Column(db.String(255), db.ForeignKey('users.user_id'), nullable=True)
+    sub_subscriber = db.Column(db.String(255), db.ForeignKey('users.user_id'), nullable=True)
     user = db.relationship('users', backref='subs', lazy=True)
 
 class posts(db.Model):
