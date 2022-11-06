@@ -1,0 +1,14 @@
+* {
+    background-color: #212121;
+    color: white !important;
+}
+.hearddit-palette-misc-1{
+    background-color: #121212 !important;
+}
+
+.btn-hearddit-primary{
+    background-color: #1db954;
+    color: #121212 !important;
+    border-radius: 30px;
+    border: #1db954 2px solid;
+}
