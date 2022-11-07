@@ -27,11 +27,12 @@ def create_account():
     if email != email_confirm:
         abort(400)
     
-    
+
 
     # return render_template('create_account.html', email=email, email_confirm=email_confirm,username=username,password=password)
     return redirect('/home')
 
+# Needed two separate functions for a post and get route.
 @app.get('/login/create')
 def get_create_form():
     return render_template('create_account.html')
