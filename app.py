@@ -4,21 +4,9 @@ app = Flask(__name__)
 
 @app.get('/')
 def index():
-    return render_template('home_page.html')
+    #Edit once Database models are implemented
+    all_posts = ''
+    communities = ['h/TestCommunity1', 'h/TestCommunity2', 'h/TestCommunity3']
+    return render_template('home_page.html', list_posts = True, posts = all_posts, communities = communities)
 
-# @app.get('/login')
-# def index():
-#     return render_template('login.html')
-
-# @app.get('/home')
-# def index():
-#     return render_template('home_page.html')
-
-# @app.get('/login/create')
-# def index():
-#     return render_template('create_account.html')
-
-# @app.get('/create/post')
-# def index():
-#     return render_template('create_new_post.html')
 

@@ -1,12 +1,12 @@
 {%extends '_layout.html'%}
 {%block body%}
   <!-- NavBar -->
-  <nav class="navbar hearddit-palette-misc-1">
+  <nav class="navbar hearddit-palette-misc-1 sticky-top">
     <div class="container-fluid hearddit-palette-misc-1">
       <a class="navbar-brand hearddit-palette-misc-1">Hearddit</a>
       <form class="d-flex" role="search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-        <input class="form-control " type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control text-dark" type="search" placeholder="Search" aria-label="Search">
       </form>
       <div class="navbar-nav d-flex flex-row hearddit-palette-misc-1">
         <a class="nav-link btn-hearddit-secondary hearddit-palette-misc-1 px-3" href="#">Log In</a>
@@ -15,40 +15,47 @@
     </div>
   </nav>
 
-  <!-- Page container -->
-  <div class="container-fluid">
-    <div class="row">
-      <!-- sidebar -->
-      <nav id="sidebarMenu" class="hearddit-palette-misc-1 col-md-3 col-lg-2 d-md-block bg-light sidebar collapse flex-column">
-        <div class="position-sticky pt-3 sidebar-sticky hearddit-palette-misc-1">
-          <div class="row d-flex hearddit-palette-misc-1">
-          <ul class="nav hearddit-palette-misc-1">
-            <h2 class="hearddit-palette-misc-1">Popular Communities</h2>
-            <li class="nav-item">
-              <a href="/" class="nav-link hearddit-palette-misc-1">h/Community1</a>
-            </li>
-            <li class="nav-item">
-              <a href="/" class="nav-link hearddit-palette-misc-1">h/Community1</a>
-            </li>
-            <li class="nav-item">
-              <a href="/" class="nav-link hearddit-palette-misc-1">h/Community1</a>
-            </li>
-          </ul>
-          </div>
-          <div class="row d-flex hearddit-palette-misc-1">
-            <div class="account-info hearddit-palette-misc-1">
-              <p class="hearddit-palette-misc-1">Join Hearddit</p>
-              <p class="hearddit-palette-misc-1">Create an account to follow your favorite artists and start taking part in conversations</p>
-              <button class="btn-hearddit-primary">Create an Account</button>
-            </div>
+  <!-- Container -->
+  <div class="container-fluid  min-vh-100">
+  <!-- Page Row -->
+    
+    <div class="row min-vh-100">
+      <!-- Side Bar (Popular SubHearddits) -->
+      <div class="col-md-2 sidebar d-flex flex-column hearddit-palette-misc-1">
+        <ul class="hearddit-palette-misc-1">
+          <h3 class="hearddit-palette-misc-1">Popular Communities</h3>
+          {% for community in communities %}
+          <li class="nav-item">
+            <a href="/" class="nav-link hearddit-palette-misc-1">{{community}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="row d-flex hearddit-palette-misc-1 mt-auto mb-5 pb-5">
+          <div class="account-info hearddit-palette-misc-1">
+            <p class="hearddit-palette-misc-1">Join Hearddit</p>
+            <p class="hearddit-palette-misc-1">Create an account to follow your favorite artists and start taking part in conversations</p>
+            <button class="btn-hearddit-primary">Create an Account</button>
           </div>
         </div>
-      </nav>
-      <div class="col page-content" >
-        <h3>Content goes here just a place holder</h3>
+      </div>
+      <!-- Posts -->
+      <div class="col posts-content">
+
+        {% for post in all_posts %}
+
+        <div class="card-container col-9">
+          <div class="hearddit-card">
+                <h3 class="title"><a href={{post.postlink}}>{{post.post_sub}}</a></h3>
+                <li class="divider"></li>
+                <h3 class="title">{{post.post_title}}</h3>
+                <h2 class="subtitle">Posted by u/{{post.post_user}}</h2>
+                <p class="content">{{post.post_text}}</p>
+          </div>
+          </div>
+          {%endfor%}
       </div>
     </div>
-    <!-- SideBar -->
-    <!-- Main Dash -->
+
   </div>
   {%endblock%}
