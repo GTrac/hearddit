@@ -5,6 +5,10 @@ app = Flask(__name__)
 @app.get('/')
 def index():
     return render_template('home_page.html')
+    
+@app.get('/post')
+def index():
+    return render_template('savingposts.html')
 
 @app.get('/login')
 def index():
