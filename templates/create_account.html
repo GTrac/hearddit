@@ -73,6 +73,10 @@
 
             <button class="button_one" style="display:block;"><font size = "4">Create Account</font></button><br>
         </div>
+        <!-- Check to see if there's an error. -->
+        {% if error_message %}
+            <p>{{error_message}}</p>
+        {% endif %}
     </form>
 
 </body>

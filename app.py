@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, abort
+from flask import Flask, redirect, render_template, request, abort, session
 
 
 app = Flask(__name__)
@@ -8,26 +8,25 @@ def index():
     return render_template('home_page.html')
 
 @app.get('/login')
-def index():
+def index_two():
     return render_template('login.html')
 
 @app.get('/home')
-def index():
+def index_three():
     return render_template('home_page.html')
 
 @app.post('/login/create')
 def create_account():
+   
     email = request.form.get('email_input')
-    email_confirm  = request.form.get('email_confirm')
+    email_confirm = request.form.get('email_confirm')
     username = request.form.get('enter_username')
-    password = request.form.get('enter_password')
-
+    pasword = request.form.get('enter_password')
 
     # Need an if statement to make sure both email variables are equal. If not, then it should not go to the database.
     if email != email_confirm:
-        abort(400)
-    
-
+        error_message = 'Emails did not match'
+        return render_template('create_account.html', error_message = error_message)
 
     # return render_template('create_account.html', email=email, email_confirm=email_confirm,username=username,password=password)
     return redirect('/home')
@@ -38,6 +37,6 @@ def get_create_form():
     return render_template('create_account.html')
 
 @app.get('/create/post')
-def index():
+def index_four():
     return render_template('create_new_post.html')
 
