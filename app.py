@@ -5,7 +5,10 @@ app = Flask(__name__)
 
 @app.get('/')
 def index():
-    return render_template('home_page.html')
+    #Edit once Database models are implemented
+    all_posts = ''
+    communities = ['h/TestCommunity1', 'h/TestCommunity2', 'h/TestCommunity3']
+    return render_template('home_page.html', list_posts = True, posts = all_posts, communities = communities)
 
 @app.get('/login')
 def index_two():
@@ -39,4 +42,5 @@ def get_create_form():
 @app.get('/create/post')
 def index_four():
     return render_template('create_new_post.html')
+
 

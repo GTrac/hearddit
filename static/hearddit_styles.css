@@ -1,0 +1,72 @@
+* {
+    background-color: #212121;
+    color: white !important;
+}
+
+body{
+    height: 100%;
+}
+.hearddit-palette-misc-1{
+    background-color: #121212 !important;
+}
+
+.btn-hearddit-primary{
+    background-color: #1db954;
+    color: #121212 !important;
+    border-radius: 30px;
+    border: #1db954 2px solid;
+}
+
+.posts-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+.card-container{
+    padding: 10px;
+}
+.hearddit-card{
+    max-width: 900px !important;
+    max-height: 500px !important;
+    min-height: 400px;
+    max-height: 250px;
+    padding: 10px !important;
+    background-color: #535353 !important;
+    border-radius: 10px !important;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.subtitle{
+    padding-top: 0%;
+    font-size: 15px;
+    margin-top: 0;
+}
+
+.content{
+    font-size: 15px;
+}
+
+.hearddit-card .title {
+    background-color: #535353 !important;
+    color: white;
+}
+
+.hearddit-card .subtitle{
+    background-color: #535353 !important;
+    color: b3b3b3;
+}
+
+.hearddit-card .content{
+    background-color: #535353 !important;
+    color: white;
+}
