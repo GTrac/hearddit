@@ -57,7 +57,7 @@
     <br>
 
     <!--For now, the form will not do anything when you press one of the two buttons. Form will not be perfect in terms of style.-->
-    <form id="account_creation" style="border:2px solid rgb(44,44,44)">
+    <form id="account_creation" style="border:2px solid rgb(44,44,44)" method="post">
         <div class="interior">
             <button class="button_two" style="display: block;"><font size = "4">Continue with Spotify</font></button>
             <br>
@@ -73,6 +73,10 @@
 
             <button class="button_one" style="display:block;"><font size = "4">Create Account</font></button><br>
         </div>
+        <!-- Check to see if there's an error. -->
+        {% if error_message %}
+            <p>{{error_message}}</p>
+        {% endif %}
     </form>
 
 </body>
