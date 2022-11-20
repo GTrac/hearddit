@@ -1,4 +1,8 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+:colors{
+
+}
 :root{
     --hearddit-color-green: #1db954;
     --hearddit-color-grey: #535353;
@@ -8,13 +12,24 @@
     --hearddit-color-light-grey: #b3b3b3;
 }
 
-* {
-    /* background-color: var(--hearddit-color-space-metal); */
+*{
     color: white !important;
 }
-
 body{
     height: 100%;
+    
+}
+
+nav{
+    background-color: var(--hearddit-color-black);
+}
+
+nav input{
+    color: var(--hearddit-color-black) !important;
+}
+
+nav .btn-search{
+    background-color: var(--hearddit-color-green);
 }
 .hearddit-palette-misc-1{
     background-color: #121212 !important;
@@ -81,16 +96,3 @@ body{
     color: white;
 }
 
-.hearddit-search-form{
-    color: var(--hearddit-color-black);
-    display: flex;
-    padding: 3px;
-    border: 1px solid var(--hearddit-color-black);
-    border-radius: 5px;
-}
-
-.hearddit-search-form input{
-    border: none;
-    background: transparent;
-    margin: 0;
-}

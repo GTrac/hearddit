@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hearddit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="static\hearddit_styles.css">
+</head>
+  <body>
+    
+    <nav class="navbar bg-light">
+        <!-- Heading Fixed -->
+        <div class="container-fluid justify-content-center">
+            <a href="#top" id="top" class="navbar-brand">Hearddit Styling Guide</a>
+        </div>
+    </nav>
+    <ul class="nav justify-content-center bg-light navbar-dark">
+        <li class="nav-item">
+            <a href="#colors"class="nav-link text-dark active">Colors</a>
+        </li>
+        <li class="nav-item">
+            <a href="#typography"class="nav-link text-dark">Typography</a>
+        </li>
+        <li class="nav-item">
+            <a href="#"class="nav-link text-dark">Nav</a>
+        </li>
+        <li class="nav-item">
+            <a href="#"class="nav-link text-dark">Buttons</a>
+        </li>
+        <li class="nav-item">
+            <a href="#"class="nav-link text-dark">Forms</a>
+        </li>
+        <li class="nav-item">
+            <a href="#"class="nav-link text-dark">Misc</a>
+        </li>
+    </ul>
+
+    <!-- Start -->
+    <div class="container">
+        <h1 id="#color">Colors</h1>
+        <hr/>
+        <div class="row">
+            <!-- Col 1 -->
+            <div class="col">
+                <div class="card" style="background-color: #1db954; width: 18rem; height: 10rem;">
+                    <div class="card-body text-center">
+                    <h5 class="card-title text-white">#1db954</h5>
+                    <p class="card-text text-white">Uses include: forward progress, highlighting,</p>
+                    <p class="card-text text-white">class: hearddit-color-green</p>
+                    </div>
+                  </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="col">
+                <div class="card" style="background-color: #535353; width: 18rem; height: 10rem;">
+                    <div class="card-body text-center">
+                    <h5 class="card-title text-white">#535353</h5>
+                    <p class="card-text text-white">Uses include: cards, posts, andything in Foreground</p>
+                    <p class="card-text text-white">class: hearddit-color-grey</p>
+                </div>
+                  </div>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="col">
+                <div class="card" style="background-color: #212121; width: 18rem; height: 10rem;">
+                    <div class="card-body text-center">
+                    <h5 class="card-title text-white">#212121</h5>
+                    <p class="card-text text-white">Uses include: Background Color, Text, Misc </p>
+                    <p class="card-text text-white">class: hearddit-color-space-metal</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="row pt-4">
+            <!-- Col 4 -->
+            <div class="col">
+                <div class="card" style="background-color: #121212; width: 18rem; height: 10rem;">
+                    <div class="card-body text-center">
+                    <h5 class="card-title text-white">#121212</h5>
+                    <p class="card-text text-white">Uses include: Nav bars, secondary buttons etc </p>
+                    <p class="card-text text-white">class: hearddit-color-black</p>
+                    </div>
+                    </div>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="col">
+                <div class="card" style="background-color: #0047AB; width: 18rem; height: 10rem;">
+                    <div class="card-body text-center">
+                    <h5 class="card-title text-white">#0047AB</h5>
+                    <p class="card-text text-white">Uses include: constrasting items to bring attention to ccertain things </p>
+                    <p class="card-text text-white">class: hearddit-color-blue</p>
+                    </div>
+                    </div>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="col">
+                <div class="card" style="background-color: #b3b3b3; width: 18rem; height: 10rem;">
+                    <div class="card-body text-center">
+                    <h5 class="card-title text-white">#b3b3b3</h5>
+                    <p class="card-text text-white">Uses include: misc </p>
+                    <p class="card-text text-white">class: hearddit-color-misc2</p>
+                    </div>
+                    </div>
+            </div>
+
+            <h5 class="pt-3">Note: almost all text should be white (#FFFFFF) more in detail in <span><a href="#typography-font-color">here</a></span></h5>
+            
+        </div>
+
+
+        <!-- Typography -->
+        <h1 id="#typography" class="pt-5">Typography</h1>
+        <hr/>
+        <h4>Fonts</h4>
+        <p>Bootstrap Defaults work fine, if need to use something else use a calibri font typeface </p>
+        <h4 id="typography-font-color">Font Color</h4>
+        <p>On Dark background use #FFFFFF <strong>hearddit-color-white</strong></p>
+        <p>On backgrounds such as when the class hearddit-color-green is used, use <strong>hearddit-color-black</strong></p>
+
+
+        <!-- Components -->
+        <h1 class="pt-5">Components</h1>
+        <hr/>
+        <p>Below are code snippets and examples of common components used throughout Hearddit Project</p>
+        <h5>Note</h5>
+        <p>Please note these are only examples of components and will not place the components where you want them, you will still have to use bootstrap to position the items where you want them</p>
+        <p>For more resources on how to position items please refer to <a href="https://getbootstrap.com/docs/4.0/layout/grid/">Grid System</a> in the documentation</p>
+
+        <!-- Nav -->
+        <h1 class="pt-5">Navigation</h1>
+        <hr/>
+        <h3>NavBar</h3>
+        <h4>Class: hearddit-navbar</h4>
+        <p>The Custom Hearddit Navbar uses both Bootstrap elements aswell as custom CSS</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
