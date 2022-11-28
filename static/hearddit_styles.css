@@ -73,6 +73,28 @@ nav .searchbar{
     max-height: fit-content;
 }
 
+/* Secondary */
+
+.btn-hearddit-secondary{
+    background-color: var(--hearddit-color-black);
+    color: white !important;
+    border-radius: 20px;
+    border: var(--hearddit-color-black) 2px solid;
+    /* min-width: 8rem; */
+    max-height: fit-content;
+    width: 50%;
+    text-align: center;
+}
+
+.btn-hearddit-secondary:hover{
+    background-color: var(--hearddit-color-black);
+    color: var(--hearddit-color-green) !important;
+    border-radius: 20px;
+    border: var(--hearddit-color-black) 2px solid;
+    /* min-width: 8rem; */
+    max-height: fit-content;
+}
+
 
 
 /* Home Page */
@@ -128,6 +150,18 @@ nav .searchbar{
     position: relative;
 }
 
+.hearddit-card-account{
+    max-width: 900px !important;
+    max-height: 90% !important;
+    min-height: 90%;
+    min-height: 250px;
+    padding: 60px !important;
+    background-color: #535353 !important;
+    border-radius: 10px !important;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+    position: relative;
+
+}
 .title{
     font-weight: bold;
     font-size: 30px;
