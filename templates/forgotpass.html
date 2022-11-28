@@ -1,0 +1,96 @@
+<html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hearddit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <style>
+div{
+    color:white;
+    background: black;
+    padding:10;
+    border:10px solid black;
+}
+h1{
+    text-align:left;
+}
+input[type=text]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px;
+    display: inline-block;
+    border: none;
+    background:white;
+    border-radius: 20px;
+    text-align: center;
+    top:50%;
+    left:50%;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
+}
+.button {
+    background-color: black;
+    width:30%;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align:center;
+    text-decoration: none;
+    display:inline-flex;
+    margin: 15px 2px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    border-radius: 16px;
+}
+.buttn{
+    background-color: green;
+    width:18%;
+    border-color: black;
+    color: black;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 15px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+.container {
+    color: white;
+    background-color: rgb(71, 70, 70);
+    border-color:rgb(71, 70, 70);
+    width: 900px;
+    height:500px;
+    top:10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:1%;
+    margin-bottom: 7%;
+    float: center;
+    border-radius: 16px;
+    border: 100px;
+}
+
+    </style>
+    <body style="background-color:rgb(35, 34, 34);">
+        <div><b> <font size="10"><center>Hearddit</center></font></b></div>
+        <form id="form_login" style="border:1px solid rgb(44, 44, 44)">
+            <div class="container">
+              <h1><font size="7"><center>Forgot Password</center></font></h1>
+              <p><center>Please enter your email address below and we will send you information to reset your password.</center></p>
+              <a href="http://127.0.0.1:5500/hearddit/templates/login_using_social_media.html#">Go Back</a><br>
+              <label for="email"><b>Email Address</b></label>
+              <input type="text" name="email" required>
+              <button class="buttn" style="display:block; margin: 0 auto;"><font size="3"><B>Submit</B></font> </button>
+            </div>
+            <div class="col-md-5 forgot-return" style="display:none;">
+                <h2>Reset Password Sent</h2>
+                <p>An email has been sent to your address with a reset password you can use to access your account.</p>
+              </div>
+          </form>
+    </body>
+</html>
