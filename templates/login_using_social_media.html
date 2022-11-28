@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearddit</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+h2{
+
+   color:rgb(251, 248, 248);
+    background: rgb(17, 17, 17);
+    padding:20px;
+    border:10px solid rgb(15, 15, 15);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+/* style the container */
+.container {
+  position: relative;
+  border-radius: 0px;
+  background-color: #f4f3f3;
+  padding: 20px 0 30px 0;
+} 
+
+/* style inputs and link buttons */
+input,
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+input:hover,
+.btn:hover {
+  opacity: 5;
+}
+
+.spotify {
+  background-color:green;
+  color: white;
+  border-radius: 80px;
+}
+
+
+.google {
+  background-color: #c53421;
+  color: white;
+  border-radius: 80px;
+}
+
+/* style the submit button */
+input[type=submit] {
+  background-color: #179d5a;
+  color: rgb(251, 249, 249);
+  border-radius:50px;
+}
+
+/* Two-column layout */
+.col {
+  float: left;
+  width: 50%;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* vertical line */
+.vl {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid rgb(188, 186, 186);
+  height: 175px;
+}
+
+/* text inside the vertical line */
+.vl-innertext {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 8px 10px;
+}
+
+/* hide some text on medium and large screens */
+.hide-md-lg {
+  display: none;
+}
+
+/* bottom container */
+.bottom-container {
+  text-align: center;
+  background-color: rgb(34, 25, 25);
+  border-radius: 0px 0px 4px 4px;
+}
+
+@media screen and (max-width: 650px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  /* hide the vertical line */
+  .vl {
+    display: none;
+  }
+  /* show the hidden text on small screens */
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+<h2><b> <font size="10"><center>Hearddit</center></font></b></h2>
+
+
+<div class="container">
+  <form action="/action_page.php">
+    <div class="row">
+      <h1 style="text-align:center">Log In</h1>
+      <div class="vl">
+     
+      </div>
+
+      <div class="col">
+        <a href="#" class="spotify btn">
+          <i class="fa fa-spotify fa-fw"></i> Continue with Spotify
+         </a>
+        <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+          </i>Continue with Google
+        </a>
+      </div>
+
+      <div class="col">
+        <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div>
+
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" placeholder="Password"  id="myInput">
+        <input type="checkbox" onclick="myFunction()">
+
+        <input type="submit" value="Log In">
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<div class="bottom-container">
+  <div class="row">
+    <div id="id01" class="col">
+      <a href="http://127.0.0.1:5500/hearddit/templates/page_three.html" style="color:rgb(251, 251, 251)" class="btn"><B>Sign Up</B>
+       </a>
+      </a>
+    </div>
+    <div class="col">
+      <a href="http://127.0.0.1:5500/hearddit/templates/x.html" style="color:white" class="btn"><B>Forgot Password?</B></a>
+    </div>
+  </div>
+</div>
+<script>
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+  </script>
+</body>
+</html>
