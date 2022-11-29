@@ -1,7 +1,6 @@
 
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
-from src.repositories.post_repository import post_repository_singleton
 from models import db, users, subh, posts, comments
 
 
@@ -72,19 +71,21 @@ def create_post():
     post_rating = request.form.get('post_rating', 0, type=int)
     if post_title == ' ' or post_text == ' ':
         abort(400)
-    new_post = post_repository_singleton.create_post()
+    new_post = posts(post_title = post_title, post_link=post_link, post_id=post_id, post_rating=post_rating)
+    db.session.add(new_post)
+    db.session.commit()
     return redirect("/post/<id>")
 
 @app.get('/post/<id>')
 def post_page(id):
-    db.session.add(id)
-    db.session.commit()
-    return render_template('post_page.html')
+    post_page = posts.query.get(id)
+    return render_template('post_page.html', post_page=post_page)
 
 @app.post('/delete/post')
 def delete_post(post_id):
-    db.query.session.get_or_404(post_id)
-    db.query.delete(post_id)
-    db.query.commit()
+    # Need to retrieve id, and then delete it.
+    post_delete = posts.query.get(post_id)
+    db.session.delete(post_delete)
+    db.session.commit()
 
     return redirect('/')

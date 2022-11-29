@@ -1,4 +1,4 @@
-from src.models import posts, db
+from models import posts, db
 
 class post_repository:
 
@@ -35,4 +35,4 @@ class post_repository:
 
 
 
-post_repository_singleton = posts()
+# post_repository_singleton = posts()
