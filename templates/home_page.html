@@ -1,39 +1,57 @@
 {%extends '_layout.html'%}
 {%block body%}
   <!-- NavBar -->
-  <nav class="navbar hearddit-palette-misc-1 sticky-top">
-    <div class="container-fluid hearddit-palette-misc-1">
-      <a class="navbar-brand hearddit-palette-misc-1">Hearddit</a>
-      <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-        <input class="form-control text-dark" type="search" placeholder="Search" aria-label="Search">
-      </form>
-      <div class="navbar-nav d-flex flex-row hearddit-palette-misc-1">
-        <a class="nav-link btn-hearddit-secondary hearddit-palette-misc-1 px-3" href="#">Log In</a>
-        <a class="nav-link btn-hearddit-primary px-3" href="#">Sign Up</a>
-      </div>
+  <nav class="navbar p-2 sticky-top navbar-expand-lg">
+    <a href="" class="navbar-brand text-white">Hearddit</a>
+    <!-- Hamburger menu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarToggler">
+        <!-- Search Bar -->
+        <form action="" class="form-inline mx-auto w-50 mw-75">
+            <div class="input-group form-row border border-dark rounded-2">
+                <input type="text" class="form-control border-0 searchbar" placeholder="Search Hearddit...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                </div>
+            </div>
+        </form>
+        <!-- Links and Such -->
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center text-white">
+            <li class="nav-item ">
+                 <a href="/signup" class="nav-link text-white">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a href="/login" class="nav-link btn-hearddit-primary">Log in</a>
+           </li>
+        </ul>
     </div>
-  </nav>
+    </nav>
 
   <!-- Container -->
   <div class="container-fluid  min-vh-100">
   <!-- Page Row -->
     
-    <div class="row min-vh-100">
+    <div class="row min-vh-100 d-flex">
       <!-- Side Bar (Popular SubHearddits) -->
-      <div class="col-md-2 sidebar d-flex flex-column hearddit-palette-misc-1">
-        <ul class="hearddit-palette-misc-1">
-          <h3 class="hearddit-palette-misc-1">Popular Communities</h3>
+      <div class="col-md-2 sidebar ">
+        <ul class="sidebar-nav">
+          <h3 class="sidebar-title">Popular Communities</h3>
           {% for community in communities %}
           <li class="nav-item">
-            <a href="/" class="nav-link hearddit-palette-misc-1">{{community}}</a>
+            <a href="/" class="nav-link">{{community}}</a>
           </li>
           {% endfor %}
         </ul>
 
-        <div class="row d-flex hearddit-palette-misc-1 mt-auto mb-5 pb-5">
-          <div class="account-info hearddit-palette-misc-1">
-            <p class="hearddit-palette-misc-1">Join Hearddit</p>
+        <div class="row d-flex mt-auto mb-5 pb-5">
+          <div class="account-info align-content-center">
+            <p class="">Join Hearddit</p>
             <p class="hearddit-palette-misc-1">Create an account to follow your favorite artists and start taking part in conversations</p>
             <button class="btn-hearddit-primary">Create an Account</button>
           </div>
