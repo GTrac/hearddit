@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, abort, session
-
+import flask_sqlalchemy
 
 app = Flask(__name__)
 
@@ -43,8 +43,30 @@ def create_account():
 def get_create_form():
     return render_template('create_account.html')
 
+
 @app.get('/create/post')
-def index_four():
+def get_create_post():
+    # Return this here in the get route.
     return render_template('create_new_post.html')
 
+@app.post('/create/post')
+def create_post():
+    # Use variables from database.
 
+    post_title = request.form.get('post_title')
+    post_text = request.form.get('post_text')
+    # Once models.py is pushed, we'll create a post using post models.
+    return redirect("/post/<id>")
+
+@app.get('/post/<id>')
+def post_page(id):
+    # Need models.py pushed to main branch.
+    return render_template('post_page.html')
+
+@app.post('/delete/post')
+def delete_post(post_id):
+    db.query.session.get_or_404(post_id)
+    db.query.delete(post_id)
+    db.query.commit()
+
+    return redirect('/')
