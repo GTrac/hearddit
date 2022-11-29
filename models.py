@@ -10,10 +10,10 @@ class users(db.Model):
 
 class subh(db.Model):
     sub_id = db.Column(db.Integer, primary_key=True)
-    sub_name = db.Column(db.String(20), nullable=False)
+    sub_name = db.Column(db.String(50), unique=True, nullable=False)
     sub_owner = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     owner = db.relationship('users', backref='subs', lazy=True)
-    sub_total_users = db.Column(db.Integer, nullable=True)
+    sub_total_users = db.Column(db.Integer, nullable=False)
 
 class posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
