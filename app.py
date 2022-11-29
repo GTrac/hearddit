@@ -22,7 +22,7 @@ def index_two():
 def index_three():
     return render_template('home_page.html')
 
-@app.post('/login/create')
+@app.post('/signup')
 def create_account():
    
     email = request.form.get('email_input')
@@ -33,18 +33,18 @@ def create_account():
     # Need an if statement to make sure both email variables are equal. If not, then it should not go to the database.
     if email != email_confirm:
         error_message = 'Emails did not match'
-        return render_template('create_account.html', error_message = error_message)
+        return render_template('signup.html', error_message = error_message)
 
     # return render_template('create_account.html', email=email, email_confirm=email_confirm,username=username,password=password)
     return redirect('/home')
 
 # Needed two separate functions for a post and get route.
-@app.get('/login/create')
+@app.get('/signup')
 def get_create_form():
-    return render_template('create_account.html')
+    return render_template('signup.html')
 
 @app.get('/create/post')
 def index_four():
-    return render_template('create_new_post.html')
+    return render_template('create.html')
 
 
