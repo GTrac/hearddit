@@ -1,5 +1,7 @@
 from flask import Flask, redirect, render_template, request, abort, session
-import flask_sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
+from src.repositories.post_repository import post_repository_singleton
+from src.models import db
 
 app = Flask(__name__)
 
@@ -52,15 +54,20 @@ def get_create_post():
 @app.post('/create/post')
 def create_post():
     # Use variables from database.
-
-    post_title = request.form.get('post_title')
-    post_text = request.form.get('post_text')
-    # Once models.py is pushed, we'll create a post using post models.
+    post_id = request.form.get('post_id', 0, type=int)
+    post_title = request.form.get('post_title', ' ')
+    post_link = request.form.get('post_link', ' ')
+    post_text = request.form.get('post_text', ' ')
+    post_rating = request.form.get('post_rating', 0, type=int)
+    if post_title == ' ' or post_text == ' ':
+        abort(400)
+    new_post = post_repository_singleton.create_post()
     return redirect("/post/<id>")
 
 @app.get('/post/<id>')
 def post_page(id):
-    # Need models.py pushed to main branch.
+    db.session.add(id)
+    db.session.commit()
     return render_template('post_page.html')
 
 @app.post('/delete/post')
