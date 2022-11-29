@@ -57,5 +57,3 @@ def get_create_form():
 @app.get('/create/post')
 def index_four():
     return render_template('create.html')
-
-
