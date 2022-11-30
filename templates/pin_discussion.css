@@ -1,0 +1,282 @@
+.music-forum-container {
+
+    width: 800px;
+    
+    margin: 0 auto;
+    
+    }
+    
+    
+     
+    
+    .header {
+    
+    text-align: center;
+    
+    padding: 20px 0;
+    
+    }
+    
+    
+     
+    
+    .discussions, .pinned-discussions, .new-discussion {
+    
+    padding: 10px;
+    
+    margin-bottom: 10px;
+    
+    background-color: #fafafa;
+    
+    border: 1px solid #ccc;
+    
+    }
+    
+    
+     
+    
+    .discussions h2, .pinned-discussions h2, .new-discussion h2 {
+    
+    margin-top: 0;
+    
+    margin-bottom: 10px;
+    
+    }
+    
+    
+     
+    
+    .discussions ul, .pinned-discussions ul {
+    
+    list-style-type: none;
+    
+    margin: 0;
+    
+    padding: 0;
+    
+    }
+    
+    
+     
+    
+    .discussions ul li, .pinned-discussions ul li {
+    
+    margin-bottom: 5px;
+    
+    }
+    
+    
+     
+    
+    .new-discussion form {
+    
+    margin-top: 10px;
+    
+    }
+    
+    
+     
+    
+    .new-discussion form input[type="text"], .new-discussion form textarea {
+    
+    width: 100%;
+    
+    padding: 10px;
+    
+    border: 1px solid #ccc;
+    
+    }
+    
+    
+     
+    
+    .new-discussion form input[type="submit"] {
+    
+    padding: 10px;
+    
+    background-color: #009900;
+    
+    color: #fff;
+    
+    border: none;
+    
+    font-weight: bold;
+    
+    margin-top: 10px;
+    
+    cursor: pointer;
+    
+    }<!-- HTML -->
+    
+    <div class="music-forum-container">
+    
+    <div class="header">
+    
+    <h1>Music Forum</h1>
+    
+    </div>
+    
+    <div class="discussions">
+    
+    <h2>Recent Discussions</h2>
+    
+    <ul>
+    
+    <li><a href="#">What's the best way to learn piano?</a></li>
+    
+    <li><a href="#">What equipment do I need for a home recording studio?</a></li>
+    
+    <li><a href="#">What's the best guitar for a beginner?</a></li>
+    
+    </ul>
+    
+    </div>
+    
+    <div class="pinned-discussions">
+    
+    <h2>Pinned Discussions</h2>
+    
+    <ul>
+    
+    <li><a href="#">What are the most iconic rock songs?</a></li>
+    
+    <li><a href="#">What are the best tips for learning jazz?</a></li>
+    
+    <li><a href="#">What are the best live music venues?</a></li>
+    
+    </ul>
+    
+    </div>
+    
+    <div class="new-discussion">
+    
+    <h2>Start a New Discussion</h2>
+    
+    <form>
+    
+    <input type="text" name="discussion-title" placeholder="Discussion Title" />
+    
+    <textarea name="discussion-body" placeholder="Discussion Body" rows="10" cols="50"></textarea>
+    
+    <input type="submit" value="Post" />
+    
+    </form>
+    
+    </div>
+    
+    </div>
+    
+    
+     
+    
+    <!-- CSS -->
+    
+    .music-forum-container {
+    
+    width: 800px;
+    
+    margin: 0 auto;
+    
+    }
+    
+    
+     
+    
+    .header {
+    
+    text-align: center;
+    
+    padding: 20px 0;
+    
+    }
+    
+    
+     
+    
+    .discussions, .pinned-discussions, .new-discussion {
+    
+    padding: 10px;
+    
+    margin-bottom: 10px;
+    
+    background-color: #fafafa;
+    
+    border: 1px solid #ccc;
+    
+    }
+    
+    
+     
+    
+    .discussions h2, .pinned-discussions h2, .new-discussion h2 {
+    
+    margin-top: 0;
+    
+    margin-bottom: 10px;
+    
+    }
+    
+    
+     
+    
+    .discussions ul, .pinned-discussions ul {
+    
+    list-style-type: none;
+    
+    margin: 0;
+    
+    padding: 0;
+    
+    }
+    
+    
+     
+    
+    .discussions ul li, .pinned-discussions ul li {
+    
+    margin-bottom: 5px;
+    
+    }
+    
+    
+     
+    
+    .new-discussion form {
+    
+    margin-top: 10px;
+    
+    }
+    
+    
+     
+    
+    .new-discussion form input[type="text"], .new-discussion form textarea {
+    
+    width: 100%;
+    
+    padding: 10px;
+    
+    border: 1px solid #ccc;
+    
+    }
+    
+    
+     
+    
+    .new-discussion form input[type="submit"] {
+    
+    padding: 10px;
+    
+    background-color: #009900;
+    
+    color: #fff;
+    
+    border: none;
+    
+    font-weight: bold;
+    
+    margin-top: 10px;
+    
+    cursor: pointer;
+    
+    }
