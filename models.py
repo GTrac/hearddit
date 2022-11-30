@@ -22,6 +22,17 @@ class posts(db.Model):
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)
 
+    def __init__(self, post_id, post_title, post_link, post_text, post_rating) -> None:
+        self.post_id = post_id
+        self.post_title = post_title
+        self.post_link = post_link
+        self.post_text = post_text
+        self.post_rating = post_rating
+    
+    # Added so I can use the class in post_repository.py
+    def __repr__(self) -> str:
+        return f'Post(post_id = {self.post_id}, post_title = {self.post_title}, post_link = {self.post_link}, post_text = {self.post_text}, post_rating = {self.post_rating})'
+
 class comments(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)

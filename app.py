@@ -1,5 +1,6 @@
 
 from flask import Flask, redirect, render_template, request, abort, session
+from flask_sqlalchemy import SQLAlchemy
 from models import db, users, subh, posts, comments
 
 
@@ -88,6 +89,37 @@ def create_account():
 def get_create_form():
     return render_template('signup.html')
 
+
 @app.get('/create/post')
-def index_four():
-    return render_template('create.html')
+def get_create_post():
+    # Return this here in the get route.
+    return render_template('create_new_post.html')
+
+@app.post('/create/post')
+def create_post():
+    # Use variables from database.
+    post_id = request.form.get('post_id', 0, type=int)
+    post_title = request.form.get('post_title', ' ')
+    post_link = request.form.get('post_link', ' ')
+    post_text = request.form.get('post_text', ' ')
+    post_rating = request.form.get('post_rating', 0, type=int)
+    if post_title == ' ' or post_text == ' ':
+        abort(400)
+    new_post = posts(post_title = post_title, post_link=post_link, post_id=post_id, post_rating=post_rating)
+    db.session.add(new_post)
+    db.session.commit()
+    return redirect("/post/<id>")
+
+@app.get('/post/<id>')
+def post_page(id):
+    post_page = posts.query.get(id)
+    return render_template('post_page.html', post_page=post_page)
+
+@app.post('/delete/post')
+def delete_post(post_id):
+    # Need to retrieve id, and then delete it.
+    post_delete = posts.query.get(post_id)
+    db.session.delete(post_delete)
+    db.session.commit()
+
+    return redirect('/')
