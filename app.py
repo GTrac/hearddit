@@ -2,12 +2,14 @@
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
 from models import db, users, subh, posts, comments
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'postgresql://postgres:HeardditAdminPassword@localhost:5432/hearddit'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
