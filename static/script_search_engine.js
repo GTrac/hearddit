@@ -1,37 +1,37 @@
-# getting all required elements
+// getting all required elements
 const searchWrapper = document.querySelector(".search-input")
 const inputBox = searchWrapper.querySelector("input")
 const suggBox = searchWrapper.querySelector(".autocom-box")
 const icon = searchWrapper.querySelector(".icon")
 let linkTag = searchWrapper.querySelector("a")
-# if user press any key and release
+// if user press any key and release
 inputBox.onkeyup = (e)=>{
-    let userData = e.target.value; #user enetered data
+    let userData = e.target.value; //user enetered data
     let emptyArray = []
     if(userData){
         icon.onclick = ()=>{
             linkTag.click()
         }
         emptyArray = suggestions.filter((data)=>{
-            #filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+            //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
             return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase())
         })
         emptyArray = emptyArray.map((data)=>{
-            # passing return data inside li tag
+            // passing return data inside li tag
             return data = `<li>${data}</li>`
         })
-        searchWrapper.classList.add("active"); #show autocomplete box
+        searchWrapper.classList.add("active"); //show autocomplete box
         showSuggestions(emptyArray)
         let allList = suggBox.querySelectorAll("li")
-        for let i = 0; i < allList.length; i++:
+        for (let i = 0; i < allList.length; i++)
             //adding onclick attribute in all li tag
             allList[i].setAttribute("onclick", "select(this)")
 
     }else{
-        searchWrapper.classList.remove("active"); #hide autocomplete box
+        searchWrapper.classList.remove("active"); //hide autocomplete box
     }
 }
-def select(element){
+function select(element){
     let selectData = element.textContent
     inputBox.value = selectData
     icon.onclick = ()=>{
@@ -39,9 +39,9 @@ def select(element){
     }
     searchWrapper.classList.remove("active")
 }
-def showSuggestions(list){
+function showSuggestions(list){
     let listData
-    if(not list.length){
+    if(!list.length){
         userValue = inputBox.value
         listData = `<li>${userValue}</li>`
     }else{
@@ -49,4 +49,4 @@ def showSuggestions(list){
     }
     suggBox.innerHTML = listData
 }
-#Source: https://www.youtube.com/watch?v=QxMBHi_ZiT8&t=1s
+//Source: https://www.youtube.com/watch?v=QxMBHi_ZiT8&t=1s
