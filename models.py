@@ -33,6 +33,16 @@ class posts(db.Model):
     def __repr__(self) -> str:
         return f'Post(post_id = {self.post_id}, post_title = {self.post_title}, post_link = {self.post_link}, post_text = {self.post_text}, post_rating = {self.post_rating})'
 
+# Junction table for comments and flagged comments.
+flagged_comments_table = db.Table(
+    'flagged_comments',
+    db.Column('comment_id', db.Integer, \
+        db.ForeignKey('comments.comment_id'), primary_key=True),
+   
+    
+)
+
+
 class comments(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
@@ -43,6 +53,12 @@ class comments(db.Model):
     comment_text = db.Column(db.String(40000), nullable=False)
     comment_rating = db.Column(db.Integer, nullable=False)
     
+class comments_flag(db.Model):
+    flagged_comment = db.Column(db.Boolean, nullable=True, default=False)
+    flagged_comment_relationship = db.relationship('comments', secondary=flagged_comments_table, backref='comments')
+
+
+
 sub_post = db.Table(
     'sub_post',
     db.Column('sub_id', db.Integer, \

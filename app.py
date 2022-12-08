@@ -1,7 +1,7 @@
 
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
-from models import db, users, subh, posts, comments
+from models import db, users, subh, posts, comments, comments_flag
 import os
 from dotenv import load_dotenv
 
@@ -125,3 +125,10 @@ def delete_post(post_id):
     db.session.commit()
 
     return redirect('/')
+
+
+@app.get('/')
+def flag_comments(comment):
+    flagged_comment = comments_flag.query.get(comment)
+    # Temporary
+    return render_template('pin_discussions.html', flagged_comment=flagged_comment)
