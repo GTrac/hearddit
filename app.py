@@ -1,7 +1,7 @@
 
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
-from models import db, users, subh, posts, comments
+from models import db, users, subh, posts, comments, Tags
 import os
 from dotenv import load_dotenv
 
@@ -78,7 +78,7 @@ def create_account():
     username = request.form.get('enter_username')
     pasword = request.form.get('enter_password')
 
-    # Need an if statement to make sure both email variables are equal. If not, then it should not go to the database.
+    
     if email != email_confirm:
         error_message = 'Emails did not match'
         return render_template('signup.html', error_message = error_message)
@@ -86,7 +86,7 @@ def create_account():
     # return render_template('create_account.html', email=email, email_confirm=email_confirm,username=username,password=password)
     return redirect('/home')
 
-# Needed two separate functions for a post and get route.
+
 @app.get('/signup')
 def get_create_form():
     return render_template('signup.html')
@@ -94,12 +94,10 @@ def get_create_form():
 
 @app.get('/create/post')
 def get_create_post():
-    # Return this here in the get route.
     return render_template('create_new_post.html')
 
 @app.post('/create/post')
 def create_post():
-    # Use variables from database.
     post_id = request.form.get('post_id', 0, type=int)
     post_title = request.form.get('post_title', ' ')
     post_link = request.form.get('post_link', ' ')
@@ -112,6 +110,15 @@ def create_post():
     db.session.commit()
     return redirect("/post/<id>")
 
+@app.post('/create/post')
+def tag_post():
+    tag_name = request.form.get('tag_id', '')
+    new_tag = Tags(tag_name=tag_name)
+    db.session.add(new_tag)
+    db.session.commit()
+    return redirect('/posts/<id>')
+
+    
 @app.get('/post/<id>')
 def post_page(id):
     post_page = posts.query.get(id)
@@ -119,9 +126,7 @@ def post_page(id):
 
 @app.post('/delete/post')
 def delete_post(post_id):
-    # Need to retrieve id, and then delete it.
     post_delete = posts.query.get(post_id)
     db.session.delete(post_delete)
     db.session.commit()
-
     return redirect('/')

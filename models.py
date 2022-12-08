@@ -15,6 +15,14 @@ class subh(db.Model):
     owner = db.relationship('users', backref='subs', lazy=True)
     sub_total_users = db.Column(db.Integer, nullable=False)
 
+# A junction table between tags and tag posts.
+tag_posts = db.Table(
+    'tag_posts',
+    db.Column('post_id', db.String(255), \
+        db.ForeignKey('posts.post_id'), primary_key = True),
+    db.Column('tag_name', db.String(255), \
+        db.ForeignKey('tags.tag_name'), primary_key = True)
+)
 class posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
     post_title = db.Column(db.String(255), nullable=False)
@@ -67,3 +75,7 @@ user_sub = db.Table(
         db.ForeignKey('users.user_id'), primary_key=True),
     db.Column('mod_rank', db.Integer, nullable=False),
 )
+
+class Tags(db.Model):
+    tag_name = db.Column(db.String(255), primary_key = True)
+    posts = db.relationship('posts', secondary=tag_posts, backref='posts')
