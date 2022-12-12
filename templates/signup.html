@@ -9,14 +9,21 @@
                 <div class="row d-flex pt-5 justify-content-center">
                     <div class="hearddit-card-account">
                         <div class="card-header d-flex flex-column">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{messages[0]}}
+                                </div>
+                            {% endif %}
+                            {% endwith %}
                             <div class="title">Create an Account</div>
                             <div class="row justify-content-center">
                                 <a href="" class="nav-link btn-hearddit-secondary justify-content-center mt-3">Sign Up with Spotify</a>
                             </div>
                             <!-- Update to link to spotifty intergration -->   
                             <hr>
-                        </div> 
-                        <form>
+                        </div>
+                        <form action="" method="POST">
                             <div class="form-group">
                               <label for="email_input">Whats your email?</label>
                               <input type="email" class="form-control mt-1" id="email_input" name="email_input"aria-describedby="emailHelp" placeholder="Enter email">
@@ -42,7 +49,6 @@
         {% if error_message %}
             <p style="color: red;">{{error_message}}</p>
         {% endif %}
-    </form>
 {%endblock%}
 
 <!--Source: https://www.w3schools.com/html/html_forms.asp-->

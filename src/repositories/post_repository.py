@@ -36,11 +36,7 @@ class post_repository:
 
 
     def flag_comments(comment_id):
-        comment_search = comments.query.get(comment_id)
-
-        # Check if this is true.
-        if comment_search in comments_flag.flagged_comment:
-            return comment_id
-        else:
-            return None
+        with comments_flag:
+            comment = db.session.add(comment_id)
         
+        return comment

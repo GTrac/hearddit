@@ -8,22 +8,28 @@ class users(db.Model):
     user_email = db.Column(db.String(255), unique=True, nullable=False)
     user_password = db.Column(db.String(255), nullable=False)
 
+    def __init__(self, user_name, user_email, user_password) -> None:
+       self.user_name = user_name, 
+       self.user_email = user_email, 
+       self.user_password = user_password
+       
 class subh(db.Model):
+    __tablename__ = 'subhearddits'
     sub_id = db.Column(db.Integer, primary_key=True)
     sub_name = db.Column(db.String(50), unique=True, nullable=False)
-    sub_owner = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     owner = db.relationship('users', backref='subs', lazy=True)
     sub_total_users = db.Column(db.Integer, nullable=False)
 
 class posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
-    post_title = db.Column(db.String(255), nullable=False)
+    post_title = db.Column(db.String(50), nullable=False)
     post_link = db.Column(db.String(40000), nullable=True)
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)
+    sub_id = db.Column(db.Integer, db.ForeignKey('subh.sub_id'),nullable=False)
 
-    def __init__(self, post_id, post_title, post_link, post_text, post_rating) -> None:
-        self.post_id = post_id
+    def __init__(self, post_title, post_link, post_text, post_rating) -> None:
         self.post_title = post_title
         self.post_link = post_link
         self.post_text = post_text
