@@ -83,6 +83,7 @@ nav .searchbar{
     max-height: fit-content;
     width: 50%;
     text-align: center;
+    display: inline;
 }
 
 .btn-hearddit-secondary:hover{
@@ -92,7 +93,18 @@ nav .searchbar{
     border: var(--hearddit-color-black) 2px solid;
     /* min-width: 8rem; */
     max-height: fit-content;
+    fill: var(--hearddit-color-green);
 }
+
+.btn-hearddit-secondary:hover svg{
+    background-color: var(--hearddit-color-black);
+    color: var(--hearddit-color-green) !important;
+    /* min-width: 8rem; */
+    max-height: fit-content;
+    fill: var(--hearddit-color-green);
+}
+
+
 
 
 
@@ -122,9 +134,13 @@ nav .searchbar{
     padding-top: 10px;
 }
 
-.sidebar .aaccount-info button{
-    padding: 2px;
+.sidebar .account-info{
+    padding-left: 30px;
 }
+
+/* .sidebar .account-info button{
+    padding: 2px;
+} */
 
 .posts-content{
     display: flex;

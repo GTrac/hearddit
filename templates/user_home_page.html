@@ -1,0 +1,93 @@
+{%extends '_layout.html'%}
+{%block body%}
+  <!-- NavBar -->
+  <nav class="navbar p-2 sticky-top navbar-expand-lg">
+    <a href="" class="navbar-brand text-white">Hearddit</a>
+    <!-- Hamburger menu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarToggler">
+        <!-- Search Bar -->
+        <form action="" class="form-inline mx-auto w-50 mw-75">
+            <div class="input-group form-row border border-dark rounded-2">
+                <input type="text" class="form-control border-0 searchbar" placeholder="Search Hearddit...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                </div>
+            </div>
+        </form>
+        <!-- Links and Such -->
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center text-white">
+            <li class="nav-item ">
+                 <a href="/create/post" class="nav-link text-white btn-hearddit-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-plus-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Create Post
+                 </a>
+            </li>
+       
+        </ul>
+    </div>
+    </nav>
+
+  <!-- Container -->
+  <div class="container-fluid  min-vh-100">
+  <!-- Page Row -->
+    
+    <div class="row min-vh-100 d-flex">
+      <!-- Side Bar (Popular SubHearddits) -->
+      <div class="col-md-2 sidebar ">
+        <ul class="sidebar-nav">
+          <h3 class="sidebar-title">Your Feeds</h3>
+          <a href="/" class="nav-link">Home</a>
+          {% for community in communities %}
+          <li class="nav-item">
+            <a href="/" class="nav-link">{{community}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="row d-flex mt-auto mb-5 pb-5">
+            <div class="account-info">
+                <h5 class="">Welcome</h5>
+                <div class="div d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                    </svg>
+                    <h5 class="">{{username}}</h5>
+                </div>
+            <div class="div d-flex justify-content-center pt-2">
+                <form action="/logout" method="post">
+                    <button class="btn-hearddit-primary">logout</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Posts -->
+      <div class="col posts-content">
+
+        {% for post in all_posts %}
+
+        <div class="card-container col-9">
+          <div class="hearddit-card">
+                <h3 class="title"><a href={{post.postlink}}>{{post.post_sub}}</a></h3>
+                <li class="divider"></li>
+                <h3 class="title">{{post.post_title}}</h3>
+                <h2 class="subtitle">Posted by u/{{post.post_user}}</h2>
+                <p class="content">{{post.post_text}}</p>
+          </div>
+          </div>
+          {%endfor%}
+      </div>
+    </div>
+
+  </div>
+  {%endblock%}
