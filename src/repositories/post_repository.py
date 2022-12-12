@@ -1,8 +1,8 @@
-from models import posts, db
+from src.models import posts, db
 
 class post_repository:
 
-    def get_all_posts():
+    def get_all_posts(self):
         if posts:
             return posts.query.all()    
         else:
@@ -11,9 +11,9 @@ class post_repository:
     def get_post_by_id(self, post_id):
         return posts.query.get(post_id)
 
-    def create_post(post_id, post_title, post_link, post_text, post_rating):
+    def create_post(post_title, post_link, post_text):
         # Use the class posts to complete this function.
-        new_post = posts(post_id = post_id, post_title=post_title, post_link=post_link, post_text=post_text, post_rating=post_rating)
+        new_post = posts(post_title=post_title, post_link=post_link, post_text=post_text, post_rating=1)
         db.session.add(new_post)
         db.session.commit()
         return new_post
@@ -35,4 +35,4 @@ class post_repository:
 
 
 
-# post_repository_singleton = posts()
+post_singleton = post_repository()
