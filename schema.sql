@@ -11,7 +11,7 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE subhearddits(
+CREATE TABLE community(
     sub_id SERIAL,
     sub_name VARCHAR(50),
     user_id INTEGER UNIQUE,
@@ -29,12 +29,12 @@ CREATE TABLE posts(
     sub_id INTEGER UNIQUE,
     user_id INTEGER UNIQUE,
 	PRIMARY KEY(post_id),
-    FOREIGN KEY(sub_id) REFERENCES subhearddits(sub_id)
+    FOREIGN KEY(sub_id) REFERENCES community(sub_id)
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 
-INSERT INTO subhearddits (sub_name, user_id, sub_total_users)
+INSERT INTO community (sub_name, user_id, sub_total_users)
 VALUES('Test Sub 1', null, 1)
 VALUES('Test Sub 2', null, 2)
 VALUES('Test Sub 3', null, 3)

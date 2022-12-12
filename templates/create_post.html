@@ -1,23 +1,45 @@
-{% extends '_layout.html' %}
+{%extends '_layout.html'%}
+{%block body%}
+<div class="container">
+  <div class="row d-flex pt-5 justify-content-center">
+      <div class="hearddit-card-account">
+          <div class="card-header d-flex flex-column">
+              <div class="title">Create Post</div>
+              <!-- Update to link to spotifty intergration -->   
+              <hr>
+          </div>
+          <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="title">Post Title</label>
+                  <input type="text" class="form-control mt-1" id="title" name="title" aria-describedby="title" placeholder="Enter Post Title">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="community">Select Community</label>
+                    <select class="form-select" id="community_select" aria-label="">
+                      <option selected>Select Community</option>
+                      {% for community in communities %}
+                      <option value="{{iteration}}"> {{community}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="content" class="mt-3">Post Content</label>
+                <input type="text" class="form-control h-75" id="post-content" name="post-content" placeholder="Enter your message to the world here...">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="post-link" class="mt-3">External Link</label>
+                <input type="text" class="form-control" id="post-link" name="post-link" placeholder="have a music link? Paste it here">
+            </div>
+            </div>
+            <button type="submit" class="btn btn-hearddit-primary float-end mt-3">Create Post</button></form>
+          </form>
+      </div>
+  </div>
+</div>
 
-{% block title %} Create Post | Create New Post{% endblock %}
-
-{% block body %}
-<h1 class="mb-5">Post Title</h1>
-<br>
-<p class="mb-3">Text</p>
-<br>
-<!-- Only need the title and text for the form. -->
-<form action="/create/post" method="post">
-    <div class="mb-3">
-        <label for="post_title" class="form-label">Title</label>
-        <input type="text" name="post_title" id="post_title" class="form-control" autocomplete="off" requried>
-    </div>
-    <br>
-    <div class="mb-3">
-        <label for="post_text" class="form-label">Text</label>
-        <input type="text" name="post_text" id="post_text" class="form-control" autocomplete="off" required>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Create Post</button>
-</form>
+{%endblock%}
