@@ -17,7 +17,7 @@ VALUES('test', 'test@test.test', 'test');
 CREATE TABLE community(
     com_id SERIAL UNIQUE,
     com_name VARCHAR(50),
-    user_id INTEGER UNIQUE,
+    user_id INTEGER,
     com_total_users INTEGER,
 	PRIMARY KEY (com_id)
 );
@@ -28,8 +28,8 @@ CREATE TABLE posts(
     post_link  VARCHAR(255),
     post_text VARCHAR(255),
     post_rating INTEGER,
-    com_id SERIAL UNIQUE,
-    user_id SERIAL UNIQUE,
+    com_id INTEGER,
+    user_id INTEGER,
 	PRIMARY KEY(post_id),
     FOREIGN KEY(com_id) REFERENCES community(com_id),
 	FOREIGN KEY(user_id) REFERENCES users(user_id)
@@ -37,13 +37,19 @@ CREATE TABLE posts(
 
 
 INSERT INTO community (com_name, user_id, com_total_users)
-VALUES('Test Sub 1', 0, 1);
-VALUES('Test Sub 2', 0, 1);
-VALUES('Test Sub 3', 0, 1);
-VALUES('Test Sub 4', 0, 1);
+VALUES('Test Sub 1', 1, 1);
+INSERT INTO community (com_name, user_id, com_total_users)
+VALUES('Test Sub 2', 1, 1);
+INSERT INTO community (com_name, user_id, com_total_users)
+VALUES('Test Sub 3', 1, 1);
+INSERT INTO community (com_name, user_id, com_total_users)
+VALUES('Test Sub 4', 1, 1);
 
 INSERT INTO posts (post_title, post_link, post_text, post_rating, com_id, user_id)
-VALUES('Test Post 1', 'test_link_1', 'Test text for post 1', 1, 1, 0);
-VALUES('Test Post 2', 'test_link_2', 'Test text for post 2', 2, 2, 0);
-VALUES('Test Post 3', 'test_link_3', 'Test text for post 3', 3, 3, 0);
-VALUES('Test Post 4', 'test_link_4', 'Test text for post 4', 4, 4, 0);
+VALUES('Test Post 1', 'test_link_1', 'Test text for post 1', 1, 1, 1);
+INSERT INTO posts (post_title, post_link, post_text, post_rating, com_id, user_id)
+VALUES('Test Post 2', 'test_link_2', 'Test text for post 2', 2, 2, 1);
+INSERT INTO posts (post_title, post_link, post_text, post_rating, com_id, user_id)
+VALUES('Test Post 3', 'test_link_3', 'Test text for post 3', 3, 3, 1);
+INSERT INTO posts (post_title, post_link, post_text, post_rating, com_id, user_id)
+VALUES('Test Post 4', 'test_link_4', 'Test text for post 4', 4, 4, 1);

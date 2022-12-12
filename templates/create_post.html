@@ -8,7 +8,7 @@
               <!-- Update to link to spotifty intergration -->   
               <hr>
           </div>
-          <form action="/movies" method="post">
+          <form action="/create/post" method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="title">Post Title</label>
@@ -16,24 +16,24 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="title">Select Community</label>
-                    <select class="form-select" id="community_select" aria-label="">
+                    <select class="form-select" id="com_id" name="com_id" aria-label="">
                       <option selected>Select Community</option>
                       {% for community in communities %}
-                      <option value="{{iteration}}"> {{community.com_name}}</option>
+                      <option value="{{community.com_id}}" id="com_id" name="com_id"> {{community.com_name}}</option>
                       {% endfor %}
                     </select>
                 </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="content" class="mt-3">Post Content</label>
-                <input type="text" class="form-control h-75" id="post-content" name="post-content" placeholder="Enter your message to the world here...">
+                <label for="post_text" class="mt-3">Post Content</label>
+                <input type="text" class="form-control h-75" id="post_text" name="post_text" placeholder="Enter your message to the world here...">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="post-link" class="mt-3">External Link</label>
-                <input type="text" class="form-control" id="post-link" name="post-link" placeholder="have a music link? Paste it here">
+                <label for="post_link" class="mt-3">External Link</label>
+                <input type="text" class="form-control" id="post_link" name="post_link" placeholder="have a music link? Paste it here">
             </div>
             </div>
             <button type="submit" class="btn btn-hearddit-primary float-end mt-3">Create Post</button></form>

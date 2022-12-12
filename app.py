@@ -53,13 +53,18 @@ def get_create_post():
 @app.post('/create/post')
 def create_post():
     # Use variables from database.
-    post_id = request.form.get('post_id', 0, type=int)
-    post_title = request.form.get('post_title', ' ')
-    post_link = request.form.get('post_link', ' ')
-    post_text = request.form.get('post_text', ' ')
+    post_title = request.form.get("title")
+    post_link = request.form.get("post_link")
+    post_text = request.form.get("post_text")
+    com_id = request.form.get("com_id")
+    # username=session.get('user')['user_name']
+    # user = users.query.filter(text(username))
+    # user_id = user.id
     if post_title == ' ' or post_text == ' ':
         abort(400)
-    new_post = post_singleton.create_post(post_title = post_title, post_link=post_link, post_id=post_id)
+    new_post = posts(com_id=com_id, post_title=post_title, post_link=post_link, post_text=post_text, post_rating=1)
+    db.session.add(new_post)
+    db.session.commit()
     return redirect(f'/post/{new_post.post_id}')
 
 @app.get('/post/<int:post_id>')
