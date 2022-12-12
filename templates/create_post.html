@@ -8,18 +8,18 @@
               <!-- Update to link to spotifty intergration -->   
               <hr>
           </div>
-          <form>
+          <form action="/movies" method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="title">Post Title</label>
                   <input type="text" class="form-control mt-1" id="title" name="title" aria-describedby="title" placeholder="Enter Post Title">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="community">Select Community</label>
+                    <label for="title">Select Community</label>
                     <select class="form-select" id="community_select" aria-label="">
                       <option selected>Select Community</option>
                       {% for community in communities %}
-                      <option value="{{iteration}}"> {{community}}</option>
+                      <option value="{{iteration}}"> {{community.com_name}}</option>
                       {% endfor %}
                     </select>
                 </div>

@@ -2,6 +2,8 @@
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
 from src.models import db, users, community, posts, comments
+from src.repositories.community_repository import com_singleton
+from src.repositories.post_repository import post_singleton
 import os
 from dotenv import load_dotenv
 from secuirty import bcrypt
@@ -12,7 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 app.secret_key = os.getenv('APP_SECRET_KEY')
 
@@ -23,14 +25,14 @@ app.register_blueprint(session_router)
 
 @app.get('/')
 def index():
+    all_posts = post_singleton.get_all_posts()
+    all_communities = com_singleton.get_all_coms()
     #Edit once Database models are implemented
     if 'user' not in session:
-        all_posts=''
-        communities = ['h/TestCommunity1', 'h/TestCommunity2', 'h/TestCommunity3']
-        return render_template('home_page.html', list_posts = True, posts = all_posts, communities = communities)
+        return render_template('home_page.html', list_posts = True, posts = all_posts, communities = all_communities)
     else:
         username=session.get('user')['user_name']
-        return render_template('user_home_page.html', username=username)
+        return render_template('user_home_page.html', username=username, list_posts = True, posts = all_posts, communities = all_communities)
 
 
 @app.get('/post')
@@ -45,7 +47,8 @@ def index_three():
 @app.get('/create/post')
 def get_create_post():
     # Return this here in the get route.
-    return render_template('create_post.html')
+    all_communities = com_singleton.get_all_coms()  
+    return render_template('create_post.html', communities=all_communities)
 
 @app.post('/create/post')
 def create_post():
@@ -54,18 +57,15 @@ def create_post():
     post_title = request.form.get('post_title', ' ')
     post_link = request.form.get('post_link', ' ')
     post_text = request.form.get('post_text', ' ')
-    post_rating = request.form.get('post_rating', 0, type=int)
     if post_title == ' ' or post_text == ' ':
         abort(400)
-    new_post = posts(post_title = post_title, post_link=post_link, post_id=post_id, post_rating=post_rating)
-    db.session.add(new_post)
-    db.session.commit()
-    return redirect("/post/<id>")
+    new_post = post_singleton.create_post(post_title = post_title, post_link=post_link, post_id=post_id)
+    return redirect(f'/post/{new_post.post_id}')
 
-@app.get('/post/<id>')
+@app.get('/post/<int:post_id>')
 def post_page(id):
-    post_page = posts.query.get(id)
-    return render_template('post_page.html', post_page=post_page)
+    post_obj = posts.query.get(id)
+    return render_template('card.html', post=post_obj)
 
 @app.post('/delete/post')
 def delete_post(post_id):

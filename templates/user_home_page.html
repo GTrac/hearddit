@@ -49,7 +49,7 @@
           <a href="/" class="nav-link">Home</a>
           {% for community in communities %}
           <li class="nav-item">
-            <a href="/" class="nav-link">{{community}}</a>
+            <a href="/" class="nav-link">{{community.com_name}}</a>
           </li>
           {% endfor %}
         </ul>
@@ -78,7 +78,7 @@
 
         <div class="card-container col-9">
           <div class="hearddit-card">
-                <h3 class="title"><a href={{post.postlink}}>{{post.post_sub}}</a></h3>
+                <h3 class="title"><a href={{post.postlink}}>{{post.post_com}}</a></h3>
                 <li class="divider"></li>
                 <h3 class="title">{{post.post_title}}</h3>
                 <h2 class="subtitle">Posted by u/{{post.post_user}}</h2>
