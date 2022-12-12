@@ -1,7 +1,7 @@
 
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
-from src.models import db, users, subh, posts, comments
+from src.models import db, users, community, posts, comments
 import os
 from dotenv import load_dotenv
 from secuirty import bcrypt
@@ -45,7 +45,7 @@ def index_three():
 @app.get('/create/post')
 def get_create_post():
     # Return this here in the get route.
-    return render_template('create_new_post.html')
+    return render_template('create_post.html')
 
 @app.post('/create/post')
 def create_post():

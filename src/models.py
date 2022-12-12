@@ -13,8 +13,8 @@ class users(db.Model):
        self.user_email = user_email, 
        self.user_password = user_password
        
-class subh(db.Model):
-    __tablename__ = 'subhearddits'
+class community(db.Model):
+    __tablename__ = 'community'
     sub_id = db.Column(db.Integer, primary_key=True)
     sub_name = db.Column(db.String(50), unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
@@ -27,7 +27,7 @@ class posts(db.Model):
     post_link = db.Column(db.String(40000), nullable=True)
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)
-    sub_id = db.Column(db.Integer, db.ForeignKey('subh.sub_id'),nullable=False)
+    sub_id = db.Column(db.Integer, db.ForeignKey('community.sub_id'),nullable=False)
 
     def __init__(self, post_title, post_link, post_text, post_rating) -> None:
         self.post_title = post_title
@@ -52,7 +52,7 @@ class comments(db.Model):
 sub_post = db.Table(
     'sub_post',
     db.Column('sub_id', db.Integer, \
-        db.ForeignKey('subh.sub_id'), primary_key=True),
+        db.ForeignKey('community.sub_id'), primary_key=True),
     db.Column('post_id', db.Integer, \
         db.ForeignKey('posts.post_id'), primary_key=True),
 )
@@ -60,7 +60,7 @@ sub_post = db.Table(
 user_sub = db.Table(
     'user_sub',
     db.Column('sub_id', db.Integer, \
-        db.ForeignKey('subh.sub_id'), primary_key=True),
+        db.ForeignKey('community.sub_id'), primary_key=True),
     db.Column('user_id', db.Integer, \
         db.ForeignKey('users.user_id'), primary_key=True),
 )
@@ -68,7 +68,7 @@ user_sub = db.Table(
 user_sub = db.Table(
     'mod_sub',
     db.Column('sub_id', db.Integer, \
-        db.ForeignKey('subh.sub_id'), primary_key=True),
+        db.ForeignKey('community.sub_id'), primary_key=True),
     db.Column('mod_id', db.Integer, \
         db.ForeignKey('users.user_id'), primary_key=True),
     db.Column('mod_rank', db.Integer, nullable=False),

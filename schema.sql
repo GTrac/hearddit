@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS subhearddits;
+DROP TABLE IF EXISTS community;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
