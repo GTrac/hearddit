@@ -11,9 +11,9 @@ class post_repository:
     def get_post_by_id(self, post_id):
         return posts.query.get(post_id)
 
-    def create_post(post_id, post_title, post_link, post_text, post_rating):
+    def create_post(post_id, post_title, post_link, post_text, post_rating, sub_id):
         # Use the class.
-        new_post = posts(post_id = post_id, post_title=post_title, post_link=post_link, post_text=post_text, post_rating=post_rating)
+        new_post = posts(post_id = post_id, post_title=post_title, post_link=post_link, post_text=post_text, post_rating=post_rating, sub_id=sub_id)
         db.session.add(new_post)
         db.session.commit()
         return new_post
@@ -34,9 +34,15 @@ class post_repository:
         return post_id
 
 
-
-    def flag_comments(comment_id):
-        with comments_flag:
-            comment = db.session.add(comment_id)
-        
-        return comment
+    def create_comments(comment_id, user_id, post_id, reply_id, flagged_comment, comment_text, comment_rating):
+        # Use comments class.
+        new_comment = comments(comment_id=comment_id, user_id=user_id, post_id=post_id,reply_id=reply_id, flagged_comment=flagged_comment, comment_text=comment_text, comment_rating=comment_rating)
+        db.session.add(new_comment)
+        db.session.commit()
+        # Check if it's flagged.
+        if new_comment in comments_flag.flagged_comment == True:
+            new_flagged_comment = comments_flag(new_comment=flagged_comment)
+            db.session.add(new_flagged_comment)
+            db.session.commit()
+            return new_flagged_comment
+        return new_comment

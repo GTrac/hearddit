@@ -1,7 +1,7 @@
 
 from flask import Flask, redirect, render_template, request, abort, session
 from flask_sqlalchemy import SQLAlchemy
-from src.models import db, users, subh, posts, comments, comments_flag
+from src.models import db, users, subh, posts, comments
 import os
 from dotenv import load_dotenv
 from secuirty import bcrypt
@@ -75,3 +75,24 @@ def delete_post(post_id):
     db.session.commit()
 
     return redirect('/')
+
+
+@app.post('/create/comment')
+def create_comment():
+    comment_text = request.form.get('comment_text', ' ')
+    flagged_comment = request.form.get('flagged_comment', default=False, type=bool)
+
+    # Comment text should not be empty.
+    if comment_text == ' ':
+        abort(400)
+    
+    post_comment = comments(comment_text=comment_text, flagged_comment=flagged_comment)
+    db.session.add(post_comment)
+    db.session.commit()
+    return redirect('/comment/<id>')
+
+
+@app.get('/comment/<id>')
+def comment_page(id):
+    comment_page = comments.query.get(id)
+    return render_template('create_comment.html', comment_page=comment_page)

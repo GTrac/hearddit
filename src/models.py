@@ -56,13 +56,13 @@ class comments(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable=False)
     post = db.relationship('posts', backref='comments', lazy=True)
     reply_id = db.Column(db.Integer, nullable=False)
+    flagged_comment = db.Column(db.Boolean, nullable=True, default=False)
+    flag = db.relationship('comments_flag', backref='comments', lazy=True)
     comment_text = db.Column(db.String(40000), nullable=False)
     comment_rating = db.Column(db.Integer, nullable=False)
     
 class comments_flag(db.Model):
     flagged_comment = db.Column(db.Boolean, nullable=True, default=False)
-    flagged_comment_relationship = db.relationship('comments', secondary=flagged_comments_table, backref='comments')
-
 
 
 sub_post = db.Table(
