@@ -68,8 +68,8 @@ def create_post():
     return redirect(f'/post/{new_post.post_id}')
 
 @app.get('/post/<int:post_id>')
-def post_page(id):
-    post_obj = posts.query.get(id)
+def post_page(post_id):
+    post_obj = posts.query.get(post_id)
     return render_template('card.html', post=post_obj)
 
 @app.post('/delete/post')
