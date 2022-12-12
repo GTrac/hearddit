@@ -62,9 +62,10 @@ def post_create_account():
     new_user = users(user_name=username, user_email= email, user_password=hashed_password)   
     db.session.add(new_user)
     db.session.commit()
+
     session['user'] = {
-        'user_id':existing_user.user_id,
-        'user_name': existing_user.user_name
+        'user_id':new_user.user_id,
+        'user_name': new_user.user_name
     }
     # return render_template('create_account.html', email=email, email_confirm=email_confirm,username=username,password=password)
     return redirect('/')
