@@ -1,12 +1,12 @@
 {%extends '_layout.html'%}
 {%block body%}
-  {% for post in all_posts %}
-  <div class="card-container col-9">
+  {% for post in posts %}
+  <div class="card-container col-7">
     <div class="hearddit-card">
-          <h3 class="title"><a href={{post.postlink}}>{{post.post_sub}}</a></h3>
+          <h3 class="title"><a href={{post.postlink}}>{{post.com_name}}</a></h3>
           <li class="divider"></li>
           <h3 class="title">{{post.post_title}}</h3>
-          <h2 class="subtitle">Posted by u/{{post.post_user}}</h2>
+          <h2 class="subtitle">Posted by u/{{post.user_id}}</h2>
           <p class="content">{{post.post_text}}</p>
     </div>
   </div>

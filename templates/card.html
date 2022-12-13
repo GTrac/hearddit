@@ -1,61 +1,11 @@
-<style>
-    body{
-        background-color: 212121;
-        align-items: center;
-    }
 
-
-    .card-container{
-        padding: 10px;
-    }
-    .hearddit-card{
-        
-        max-width: 900px;
-        padding: 10px;
-        background-color: 535353;
-        border-radius: 10px;
-        box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
-        position: relative;
-    }
-
-    .title{
-        font-weight: bold;
-        font-size: 30px;
-        margin-bottom: 0;
-    }
-
-    .subtitle{
-        padding-top: 0%;
-        font-size: 15px;
-        margin-top: 0;
-    }
-
-    .content{
-        font-size: 15px;
-    }
-
-    .hearddit-card .title{
-        color: white;
-    }
-
-    .hearddit-card .subtitle{
-        color: b3b3b3;
-    }
-
-    .hearddit-card .content{
-        color: white;
-    }
-
-</style>
-
-<body>
-    
-    <div class="card-container">
+{%extends '_layout.html'%}
+{%block body%}
+    <div class="card-container col-7">
         <div class="hearddit-card">
             <h3 class="title">{{post.post_title}}</h3>
             <h2 class="subtitle">{{post.post_link}}</h2>
             <p class="content">{{post.post_text}}</p>
         </div>
     </div>
-
-</body>
+{%endblock%}
