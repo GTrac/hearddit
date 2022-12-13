@@ -1,7 +1,7 @@
 
 from flask import Flask, redirect, render_template, request, abort, session, url_for
 from flask_sqlalchemy import SQLAlchemy
-from src.models import db, users, community, posts, comments
+from src.models import db, users, community, posts, user_comments
 from src.repositories.community_repository import com_singleton
 from src.repositories.post_repository import post_singleton
 import os
@@ -91,7 +91,7 @@ def create_comment():
     # Comment should not be empty.
     if comment_text == ' ':
         abort(400)
-    new_comment = comments(comment_text=comment_text)
+    new_comment = user_comments(comment_text=comment_text)
     db.session.add(new_comment)
     db.session.commit()
     return redirect(f'/post/{new_comment.post_id}/comments/{new_comment.comment_id}')
@@ -99,6 +99,6 @@ def create_comment():
 # Comment_id is needed to work.
 @app.get('/post/<int:post_id>/comments/<id:comment_id>')
 def get_comment(post_id, comment_id):
-    comment_id_obj = comments.query.get(comment_id)
-    comment_post_id = comments.query.get(post_id)
+    comment_id_obj = user_comments.query.get(comment_id)
+    comment_post_id = user_comments.query.get(post_id)
     return render_template('create_comment.html', post_id=comment_post_id, comment_id=comment_id_obj)

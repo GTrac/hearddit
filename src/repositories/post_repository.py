@@ -1,4 +1,4 @@
-from src.models import posts, db, comments, flag_comments
+from src.models import posts, db, user_comments, flag_comments
 
 class post_repository:
 
@@ -35,7 +35,7 @@ class post_repository:
 
     def create_comment(comment_text, flagged_comment):
         # Use comments class.
-        new_comment = comments(comment_text=comment_text, flagged_comment=flagged_comment)
+        new_comment = user_comments(comment_text=comment_text, flagged_comment=flagged_comment)
         db.session.add(new_comment)
         db.session.commit()
         # Add to flagged database if it's a flagged comment.

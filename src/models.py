@@ -50,7 +50,7 @@ flagged_comments_table = db.Table(
 )
 
 
-class comments(db.Model):
+class user_comments(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     poster = db.relationship('users', backref='comments', lazy=True)
