@@ -38,12 +38,13 @@ class post_repository:
         new_comment = user_comments(comment_text=comment_text, flagged_comment=flagged_comment)
         db.session.add(new_comment)
         db.session.commit()
-        # Add to flagged database if it's a flagged comment.
-        if flagged_comment == True:
-            new_flagged_comment = flag_comments(flagged_comment=new_comment)
-            db.session.add(new_flagged_comment)
-            db.session.commit()
-            return new_flagged_comment
         return new_comment
-
+    
+    def flag_comment():
+        # Filter the comments.
+        flagged_comments = session.query(flag_comments).filter(user_comments.flagged_comment == True)
+        db.session.add(flagged_comments)
+        db.session.commit()
+        return flagged_comments
+        # Source: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_filter_operators.htm
 post_singleton = post_repository()

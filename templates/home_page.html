@@ -3,11 +3,12 @@
   {% for post in posts %}
   <div class="card-container col-7">
     <div class="hearddit-card">
-          <h3 class="title"><a href={{post.postlink}}>{{post.com_name}}</a></h3>
+          <h3 class="title"><a href="/{{post.post_link}}">{{post.com_name}}</a></h3>
           <li class="divider"></li>
           <h3 class="title">{{post.post_title}}</h3>
           <h2 class="subtitle">Posted by u/{{post.user_id}}</h2>
           <p class="content">{{post.post_text}}</p>
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{post.track_id}}?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
   {%endfor%}

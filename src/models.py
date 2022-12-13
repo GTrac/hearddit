@@ -28,13 +28,15 @@ class posts(db.Model):
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)
     com_id = db.Column(db.Integer, db.ForeignKey('community.com_id'),nullable=False)
+    track_id = db.Column(db.String(255), nullable = True)
 
-    def __init__(self, post_title, post_link, post_text, post_rating, com_id) -> None:
+    def __init__(self, post_title, post_link, post_text, post_rating, com_id, track_id) -> None:
         self.post_title = post_title
         self.post_link = post_link
         self.post_text = post_text
         self.post_rating = post_rating
         self.com_id = com_id
+        self.track_id = track_id
     
     # Added so I can use the class in post_repository.py
     def __repr__(self) -> str:
