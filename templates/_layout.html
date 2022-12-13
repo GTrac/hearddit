@@ -8,6 +8,49 @@
     <title>Hearddit</title>
   </head>
   <body>
+      <!-- NavBar -->
+  <nav class="navbar p-2 sticky-top navbar-expand-lg">
+    <a href="" class="navbar-brand text-white">Hearddit</a>
+    <!-- Hamburger menu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarToggler">
+        <!-- Search Bar -->
+        <form action="" class="form-inline mx-auto w-50 mw-75">
+            <div class="input-group form-row border border-dark rounded-2">
+                <input type="text" class="form-control border-0 searchbar" placeholder="Search Hearddit...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                </div>
+            </div>
+        </form>
+        <!-- Links and Such -->
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center text-white" style="visibility:{{ login }} ">
+          <li class="nav-item ">
+              <a href="/create/post" class="nav-link text-white btn-hearddit-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-plus-square" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Create Post
+              </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center text-white" style="visibility:{{ login }} ">
+          <li class="nav-item ">
+                <a href="/signup" class="nav-link text-white">Sign up</a>
+          </li>
+          <li class="nav-item">
+              <a href="/login" class="nav-link btn-hearddit-primary">Log in</a>
+            </li>
+        </ul>
+    </div>
+    </nav>
     {% block body %}
     {%endblock%}
   </body>
