@@ -63,7 +63,9 @@ class comments(db.Model):
     comment_rating = db.Column(db.Integer, nullable=False)
 
 class flag_comments(db.Model):
-    flagged_comment = db.Column(db.Boolean, nullable=True, default=False)
+    flagged_comment = db.Column(db.Boolean, nullable=True, default=False, primary_key=True)
+    comment_id = db.Column(db.Integer, nullable=False)
+    comment = db.relationship('comments', backref='flag_comments', lazy=True)
     
 com_post = db.Table(
     'com_post',
