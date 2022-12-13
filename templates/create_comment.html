@@ -1,24 +1,23 @@
-{% extends '_layout.html' %}
-
-{% block title %} Create Comment | Type a Comment{% endblock %}
-
-{% block body %}
-<h1 class="mb-5">Comment</h1>
-<br>
-
-<!-- Will be like making a post. -->
-<form action="/create/comment" method="post">
-    <div class="mb-3">
-        <label for="comment_text" class="form-label">Text</label>
-        <input type="text" name="comment_text" id="comment_text" class="form-control" autocomplete="off" required>
+{%extends '_layout.html'%}
+{%block body%}
+<div class="container">
+  <div class="row d-flex pt-5 justify-content-center">
+      <div class="hearddit-card-account">
+          <div class="card-header d-flex flex-column">
+            <div class="title">Comment</div>
+            <!-- Form should contain text and a checkbox for the flag. -->
+            <hr>
+            </div>
+        <form action="/post/int:post_id/comments" method="post">
+            <!-- Different div classes for each form element. -->
+            <div class="form-row com col-md-6">
+                <label for="comment">Comment</label>
+                <input type="text" class="form-control mt-1" id="comment" aria-describedby="comment" placeholder="Text" required>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+        </div>
     </div>
-    <br>
-
-    <!-- For flagging a comment. -->
-    <div class="mb-3">
-        <input type="checkbox" name ="flagged_comment" id="flagged_comment" class="form-control" autocomplete="off">
-        <label for="flagged_comment" class="form-label">Flag Comment</label>
-    </div>
-</form>
+</div>
 {% endblock %}
-<!-- Source: https://www.w3schools.com/html/html_forms.asp -->

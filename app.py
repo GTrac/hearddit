@@ -81,23 +81,20 @@ def delete_post(post_id):
 
     return redirect('/')
 
-
-@app.post('/create/comment')
+@app.post('/post/<int:post_id>/comments')
 def create_comment():
-    comment_text = request.form.get('comment_text', ' ')
-    flagged_comment = request.form.get('flagged_comment', default=False, type=bool)
-
-    # Comment text should not be empty.
+    comment_text = request.form.get('comment')
+    # Comment should not be empty.
     if comment_text == ' ':
         abort(400)
-    
-    post_comment = comments(comment_text=comment_text, flagged_comment=flagged_comment)
-    db.session.add(post_comment)
+    new_comment = comments(comment_text=comment_text)
+    db.session.add(new_comment)
     db.session.commit()
-    return redirect('/comment/<id>')
+    return redirect(f'/post/{new_comment.post_id}/comments/{new_comment.comment_id}')
 
-
-@app.get('/comment/<id>')
-def comment_page(id):
-    comment_page = comments.query.get(id)
-    return render_template('create_comment.html', comment_page=comment_page)
+# Comment_id is needed to work.
+@app.get('/post/<int:post_id>/comments/<id:comment_id>')
+def get_comment(post_id, comment_id):
+    comment_id_obj = comments.query.get(comment_id)
+    comment_post_id = comments.query.get(post_id)
+    return render_template('create_comment.html', post_id=comment_post_id, comment_id=comment_id_obj)
