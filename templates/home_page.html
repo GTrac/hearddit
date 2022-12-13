@@ -1,46 +1,14 @@
 {%extends '_layout.html'%}
 {%block body%}
-  <!-- Container -->
-  <div class="container-fluid  min-vh-100">
-  <!-- Page Row -->
-    
-    <div class="row min-vh-100 d-flex">
-      <!-- Side Bar (Popular communityearddits) -->
-      <div class="col-md-2 sidebar ">
-        <ul class="sidebar-nav">
-          <h3 class="sidebar-title">Popular Communities</h3>
-          {% for community in communities %}
-          <li class="nav-item">
-            <a href="/" class="nav-link">{{community.com_name}}</a>
-          </li>
-          {% endfor %}
-        </ul>
-
-        <div class="row d-flex mt-auto mb-5 pb-5">
-          <div class="account-info align-content-center">
-            <p class="">Join Hearddit</p>
-            <p class="hearddit-palette-misc-1">Create an account to follow your favorite artists and start taking part in conversations</p>
-            <button class="btn-hearddit-primary">Create an Account</button>
-          </div>
-        </div>
-      </div>
-      <!-- Posts -->
-      <div class="col posts-content">
-
-        {% for post in all_posts %}
-
-        <div class="card-container col-9">
-          <div class="hearddit-card">
-                <h3 class="title"><a href={{post.postlink}}>{{post.post_sub}}</a></h3>
-                <li class="divider"></li>
-                <h3 class="title">{{post.post_title}}</h3>
-                <h2 class="subtitle">Posted by u/{{post.post_user}}</h2>
-                <p class="content">{{post.post_text}}</p>
-          </div>
-          </div>
-          {%endfor%}
-      </div>
+  {% for post in all_posts %}
+  <div class="card-container col-9">
+    <div class="hearddit-card">
+          <h3 class="title"><a href={{post.postlink}}>{{post.post_sub}}</a></h3>
+          <li class="divider"></li>
+          <h3 class="title">{{post.post_title}}</h3>
+          <h2 class="subtitle">Posted by u/{{post.post_user}}</h2>
+          <p class="content">{{post.post_text}}</p>
     </div>
-
   </div>
-  {%endblock%}
+  {%endfor%}
+{%endblock%}

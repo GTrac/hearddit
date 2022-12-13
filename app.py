@@ -27,12 +27,18 @@ app.register_blueprint(session_router)
 def index():
     all_posts = post_singleton.get_all_posts()
     all_communities = com_singleton.get_all_coms()
+    username = None
     #Edit once Database models are implemented
     if 'user' not in session:
+        login = 'visible'
+        logout = 'hidden'
         return render_template('home_page.html', list_posts = True, posts = all_posts, communities = all_communities)
     else:
+        login = 'hidden'
+        logout = 'visible'
         username=session.get('user')['user_name']
-        return render_template('user_home_page.html', username=username, list_posts = True, posts = all_posts, communities = all_communities)
+    
+    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = all_posts, communities = all_communities)
 
 
 @app.get('/post')
