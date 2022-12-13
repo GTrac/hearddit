@@ -73,7 +73,8 @@ def create_post():
 @app.get('/post/<int:post_id>')
 def post_page(post_id):
     post_obj = posts.query.get(post_id)
-    return render_template('card.html', post=post_obj)
+    all_communities = com_singleton.get_all_coms()
+    return render_template('card.html', post=post_obj, communities=all_communities)
 
 @app.post('/delete/post')
 def delete_post(post_id):
