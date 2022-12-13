@@ -27,21 +27,50 @@ app.register_blueprint(session_router)
 
 @app.get('/')
 def index():
-    all_posts = post_singleton.get_all_posts()
     all_communities = com_singleton.get_all_coms()
     username = None
+    community_names = [com.com_name for com in all_communities]
+    
+    if 'search' not in session:
+        all_posts = post_singleton.get_all_posts()
+    else:
+        com_id = session['search'].get('com_id')
+        all_posts = posts.query.filter_by(com_id = com_id).all()
+        print(com_id)
+        print(all_posts)
     #Edit once Database models are implemented
     if 'user' not in session:
         login = 'visible'
         logout = 'hidden'
-        return render_template('home_page.html', list_posts = True, posts = all_posts, communities = all_communities)
+        return render_template('home_page.html', list_posts = True, posts = all_posts, communities = all_communities, autoComplete = community_names)
     else:
         login = 'hidden'
         logout = 'visible'
         username=session.get('user')['user_name']
     
-    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = all_posts, communities = all_communities)
+    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = all_posts, communities = all_communities, possible_search = community_names)
 
+@app.post('/search')
+def user_search():
+    print('made it')
+    userQ = request.form.get("searchbar")
+    print(userQ)
+    if 'search' in session:
+        session.pop('search')
+    if (userQ == None) or len(userQ) < 0:
+         return redirect('/')
+    else:
+        search = True
+        isValid = community.query.filter_by(com_name = userQ).first()
+        if isValid:
+            session['search'] = {
+                'com_id' : isValid.com_id,
+                'com_name' : isValid.com_name
+            }
+            print(isValid.com_id)
+            print(isValid.com_name)
+    print('END')
+    return redirect('/')
 
 @app.get('/post')
 def save():
