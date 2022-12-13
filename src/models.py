@@ -13,13 +13,13 @@ class users(db.Model):
        self.user_email = user_email, 
        self.user_password = user_password
        
-class subh(db.Model):
-    __tablename__ = 'subhearddits'
-    sub_id = db.Column(db.Integer, primary_key=True)
-    sub_name = db.Column(db.String(50), unique=True, nullable=False)
+class community(db.Model):
+    __tablename__ = 'community'
+    com_id = db.Column(db.Integer, primary_key=True)
+    com_name = db.Column(db.String(50), unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    owner = db.relationship('users', backref='subs', lazy=True)
-    sub_total_users = db.Column(db.Integer, nullable=False)
+    owner = db.relationship('users', backref='coms', lazy=True)
+    com_total_users = db.Column(db.Integer, nullable=False)
 
 class posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
@@ -27,13 +27,14 @@ class posts(db.Model):
     post_link = db.Column(db.String(40000), nullable=True)
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)
-    sub_id = db.Column(db.Integer, db.ForeignKey('subh.sub_id'),nullable=False)
+    com_id = db.Column(db.Integer, db.ForeignKey('community.com_id'),nullable=False)
 
-    def __init__(self, post_title, post_link, post_text, post_rating) -> None:
+    def __init__(self, post_title, post_link, post_text, post_rating, com_id) -> None:
         self.post_title = post_title
         self.post_link = post_link
         self.post_text = post_text
         self.post_rating = post_rating
+        self.com_id = com_id
     
     # Added so I can use the class in post_repository.py
     def __repr__(self) -> str:
@@ -49,26 +50,26 @@ class comments(db.Model):
     comment_text = db.Column(db.String(40000), nullable=False)
     comment_rating = db.Column(db.Integer, nullable=False)
     
-sub_post = db.Table(
-    'sub_post',
-    db.Column('sub_id', db.Integer, \
-        db.ForeignKey('subh.sub_id'), primary_key=True),
+com_post = db.Table(
+    'com_post',
+    db.Column('com_id', db.Integer, \
+        db.ForeignKey('community.com_id'), primary_key=True),
     db.Column('post_id', db.Integer, \
         db.ForeignKey('posts.post_id'), primary_key=True),
 )
 
-user_sub = db.Table(
-    'user_sub',
-    db.Column('sub_id', db.Integer, \
-        db.ForeignKey('subh.sub_id'), primary_key=True),
+user_com = db.Table(
+    'user_com',
+    db.Column('com_id', db.Integer, \
+        db.ForeignKey('community.com_id'), primary_key=True),
     db.Column('user_id', db.Integer, \
         db.ForeignKey('users.user_id'), primary_key=True),
 )
 
-user_sub = db.Table(
-    'mod_sub',
-    db.Column('sub_id', db.Integer, \
-        db.ForeignKey('subh.sub_id'), primary_key=True),
+user_com = db.Table(
+    'mod_com',
+    db.Column('com_id', db.Integer, \
+        db.ForeignKey('community.com_id'), primary_key=True),
     db.Column('mod_id', db.Integer, \
         db.ForeignKey('users.user_id'), primary_key=True),
     db.Column('mod_rank', db.Integer, nullable=False),

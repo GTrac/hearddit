@@ -38,13 +38,13 @@
   <!-- Page Row -->
     
     <div class="row min-vh-100 d-flex">
-      <!-- Side Bar (Popular SubHearddits) -->
+      <!-- Side Bar (Popular communityearddits) -->
       <div class="col-md-2 sidebar ">
         <ul class="sidebar-nav">
           <h3 class="sidebar-title">Popular Communities</h3>
           {% for community in communities %}
           <li class="nav-item">
-            <a href="/" class="nav-link">{{community}}</a>
+            <a href="/" class="nav-link">{{community.com_name}}</a>
           </li>
           {% endfor %}
         </ul>
