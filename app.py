@@ -1,5 +1,5 @@
 
-from flask import Flask, redirect, render_template, request, abort, session
+from flask import Flask, redirect, render_template, request, abort, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 from src.models import db, users, community, posts, comments
 from src.repositories.community_repository import com_singleton
@@ -7,6 +7,7 @@ from src.repositories.post_repository import post_singleton
 import os
 from dotenv import load_dotenv
 from secuirty import bcrypt
+import spotipy
 
 from blueprints.session_blueprint import router as session_router
 load_dotenv()
@@ -44,10 +45,6 @@ def index():
 @app.get('/post')
 def save():
     return render_template('savingposts.html')
-
-@app.get('/home')
-def index_three():
-    return render_template('home_page.html')
 
 
 @app.get('/create/post')
