@@ -18,7 +18,7 @@ class community_repository:
     
     # Works best if it uses a title.
     def search_com(self, com_name):
-        search = db.session.query(com_name)
+        search = community.query.filter(community.com_name.like(com_name))
         if com_name:
             return search
         else:
