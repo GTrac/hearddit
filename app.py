@@ -138,7 +138,7 @@ def create_comment():
     db.session.commit()
     return redirect(f'/post/{new_comment.post_id}/comments/{new_comment.comment_id}')
 
-# Comment_id is needed to work.
+
 @app.get('/post/<int:post_id>/comments/<id:comment_id>')
 def get_comment(post_id, comment_id):
     comment_id_obj = user_comments.query.get(comment_id)

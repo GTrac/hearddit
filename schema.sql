@@ -45,22 +45,14 @@ CREATE TABLE user_comments(
     user_id INTEGER UNIQUE,
     post_id SERIAL,
     reply_id INTEGER,
-    flagged_comment BOOLEAN NULL,
     comment_text VARCHAR(40000),
     comment_rating INTEGER,
     PRIMARY KEY(comment_id),
     FOREIGN KEY(post_id) REFERENCES posts(post_id),
-    FOREIGN KEY(user_id) REFERENCES users(user_id),
-    FOREIGN KEY(flagged_comment) REFERENCES flag_comments(flagged_comment)
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
--- Joint table below.
-CREATE TABLE flag_comments(
-    flagged_comment BOOLEAN NULL,
-    comment_id SERIAL,
-    PRIMARY KEY(flagged_comment),
-    FOREIGN KEY(comment_id) REFERENCES comments(comment_id)
-);
+
 
 INSERT INTO community (com_name, user_id, com_total_users)
 VALUES('TheBeatles', 1, 1);
