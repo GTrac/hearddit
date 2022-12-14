@@ -109,16 +109,23 @@ def create_post():
     # user_id = user.id
     if 'token' in session:
         #get song link
-        if not post_link.startswith('https'):
-            sp = spotipy.Spotify(auth_manager = SpotifyClientCredentials(client_id=os.getenv('SPOTIFY_CLIENT_ID'), client_secret=os.getenv('SPOTIFY_SECRET')))
-            qText = post_link
-            qArtist, qSong = qText.split('-')
-            tracks = sp.search(q='artist:' + qArtist + ' track:' + qSong, type='track')
-            track_id = tracks['tracks']['items'][0]['id']
-        else:
-            track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]
-            
+        try:
+            if not post_link.startswith('https'):
+                sp = spotipy.Spotify(auth_manager = SpotifyClientCredentials(client_id=os.getenv('SPOTIFY_CLIENT_ID'), client_secret=os.getenv('SPOTIFY_SECRET')))
+                qText = post_link
+                qArtist, qSong = qText.split('-')
+                tracks = sp.search(q='artist:' + qArtist + ' track:' + qSong, type='track')
+                track_id = tracks['tracks']['items'][0]['id']
+            else:
+                track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]
+        except:
+            track_id = None
+    else:
+        track_id = None
 
+    if post_link.startswith('https'):
+        track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]         
+        print(track_id)
     if post_title == ' ' or post_text == '':
         abort(400)
     new_post = posts(com_id=com_id, post_title=post_title, post_link=post_link, post_text=post_text, post_rating=1, track_id = track_id)
