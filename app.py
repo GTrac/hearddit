@@ -1,5 +1,5 @@
 
-from flask import Flask, redirect, render_template, request, abort, session, url_for
+from flask import Flask, redirect, render_template, request, abort, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from src.models import db, users, community, posts, comments
 from src.repositories.community_repository import com_singleton
@@ -47,7 +47,7 @@ def index():
         logout = 'visible'
         username=session.get('user')['user_name']
     
-    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, possible_search = community_names)
+    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, autoComplete = community_names)
 
 @app.get('/c/<string:com_name>')
 def community_page(com_name):
@@ -68,23 +68,20 @@ def community_page(com_name):
 def user_search():
     print('made it')
     userQ = request.form.get("searchbar")
+    all_communities = com_singleton.get_all_coms()
+    community_names = [com.com_name for com in all_communities]
     print(userQ)
-    if 'search' in session:
-        session.pop('search')
-    if (userQ == None) or len(userQ) < 0:
-         return redirect('/')
+    if 'user' in session:
+        if (userQ == None) or len(userQ) < 0:
+            return redirect('/')
+        if (userQ in community_names):
+            return redirect('/c/{0}'.format(userQ))
+        else:
+            flash('Sub dosent exist\nWhy dont you create it!')
+            return redirect('/create/community')
     else:
-        search = True
-        isValid = community.query.filter_by(com_name = userQ).first()
-        if isValid:
-            session['search'] = {
-                'com_id' : isValid.com_id,
-                'com_name' : isValid.com_name
-            }
-            print(isValid.com_id)
-            print(isValid.com_name)
-    print('END')
-    return redirect('/')
+        flash('Please login or signup to experience all of hearddit')
+        return redirect('/')
 
 @app.get('/post')
 def save():
@@ -94,9 +91,8 @@ def save():
 @app.get('/create/post')
 def get_create_post():
     # Return this here in the get route.
-    all_communities = com_singleton.get_all_coms()
-    username=session.get('user')['user_name']  
-    return render_template('create_post.html', communities=all_communities, username=username)
+    all_communities = com_singleton.get_all_coms()  
+    return render_template('create_post.html', communities=all_communities, username=session.get('user')['user_name'])
 
 @app.post('/create/post')
 def create_post():
@@ -159,3 +155,26 @@ def delete_post(post_id):
     db.session.commit()
 
     return redirect('/')
+
+
+# Community stuff
+@app.get('/create/community')
+def get_create_community():
+    all_communities = com_singleton.get_all_coms()  
+    return render_template('create_com.html', communities=all_communities, username=session.get('user')['user_name'])
+
+
+
+@app.post('/create/community')
+def create_community():
+    com_name = request.form.get('comname')
+    all_communities = com_singleton.get_all_coms()
+    community_names = [com.com_name.upper() for com in all_communities]
+    if not com_name.upper() in community_names:
+        new_com = community(com_name=com_name, user_id=session.get('user')['user_id'], com_total_users=0)
+        db.session.add(new_com)
+        db.session.commit()
+        flash('/c/{0} created create its first post!'.format(com_name))
+        return redirect('/create/post')
+    flash('Community already exists')
+    return redirect('/create/community')
