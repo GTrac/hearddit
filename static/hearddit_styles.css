@@ -267,3 +267,13 @@ nav .searchbar{
     padding-bottom: 2px;
     fill: #1db954;
 }
+
+.btn-comment a{
+    padding: 2px; text-decoration: none; color:white;
+}
+
+.btn-comment:hover{
+    color:#1db954;
+    fill: #1db954;
+}
+
