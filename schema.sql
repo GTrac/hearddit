@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS posts CASCADE;
 DROP TABLE IF EXISTS community CASCADE;
+DROP TABLE IF EXISTS user_comments CASCADE;
 
 
 CREATE TABLE users (
@@ -38,6 +39,19 @@ CREATE TABLE posts(
     FOREIGN KEY(com_id) REFERENCES community(com_id),
 	FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE user_comments(
+    comment_id SERIAL,
+    user_id INTEGER UNIQUE,
+    post_id SERIAL,
+    reply_id INTEGER,
+    comment_text VARCHAR(40000),
+    comment_rating INTEGER,
+    PRIMARY KEY(comment_id),
+    FOREIGN KEY(post_id) REFERENCES posts(post_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
 
 
 INSERT INTO community (com_name, user_id, com_total_users)
