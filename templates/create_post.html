@@ -3,6 +3,13 @@
 <div class="container">
   <div class="row d-flex pt-5 justify-content-center">
       <div class="hearddit-card-account">
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-primary" role="alert">
+            {{messages[0]}}
+        </div>
+    {% endif %}
+    {% endwith %}
         <div class="exit-button">
           <a href="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">

@@ -21,6 +21,11 @@ class community(db.Model):
     owner = db.relationship('users', backref='coms', lazy=True)
     com_total_users = db.Column(db.Integer, nullable=False)
 
+    def __init__(self, com_name, user_id, com_total_users) -> None:
+        self.com_name = com_name
+        self.user_id = user_id
+        self.com_total_users = com_total_users
+
 class posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
     post_title = db.Column(db.String(75), nullable=False)
