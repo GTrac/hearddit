@@ -146,16 +146,12 @@ def post_page(post_id):
 
 @app.post('/post/<int:post_id>')
 def create_comment(post_id):
-    post_obj = posts.query.get(post_id)
-    all_communities = com_singleton.get_all_coms()
     comment_text = request.form.get("comment_text")
-    print(comment_text)
     user_name=session.get('user')['user_name']
     new_comment = comments(user_name=user_name, post_id=post_id, parent_id=0, comment_text=comment_text)
     db.session.add(new_comment)
     db.session.commit()
-    posted_comments = comments.query.filter(comments.post_id == post_id).all()
-    return render_template('card.html', post=post_obj, communities=all_communities, comments=posted_comments, user_name= user_name)
+    return redirect(f'/post/{post_id}')
 
 @app.post('/delete/post')
 def delete_post(post_id):
