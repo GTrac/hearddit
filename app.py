@@ -30,7 +30,6 @@ def index():
     all_communities = com_singleton.get_all_coms()
     username = None
     community_names = [com.com_name for com in all_communities]
-    
     if 'search' not in session:
         all_posts = post_singleton.get_all_posts()
     else:
@@ -48,6 +47,21 @@ def index():
         logout = 'visible'
         username=session.get('user')['user_name']
     
+    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, possible_search = community_names)
+
+@app.get('/c/<string:com_name>')
+def community_page(com_name):
+    com_object = com_singleton.search_com(com_name)[0]
+    all_posts = post_singleton.get_post_by_com(com_object.com_id)
+    all_communities = com_singleton.get_all_coms()
+    community_names = [com.com_name for com in all_communities]
+    if 'user' not in session:
+        login = 'visible'
+        logout = 'hidden'
+    else:
+        login = 'hidden'
+        logout = 'visible'
+        username=session.get('user')['user_name']
     return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, possible_search = community_names)
 
 @app.post('/search')
@@ -95,14 +109,19 @@ def create_post():
     # user_id = user.id
     if 'token' in session:
         #get song link
-        if not post_link.startswith('https'):
-            sp = spotipy.Spotify(auth_manager = SpotifyClientCredentials(client_id=os.getenv('SPOTIFY_CLIENT_ID'), client_secret=os.getenv('SPOTIFY_SECRET')))
-            qText = post_link
-            qArtist, qSong = qText.split('-')
-            tracks = sp.search(q='artist:' + qArtist + ' track:' + qSong, type='track')
-            track_id = tracks['tracks']['items'][0]['id']
-        else:
-            track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]
+        try:
+            if not post_link.startswith('https'):
+                sp = spotipy.Spotify(auth_manager = SpotifyClientCredentials(client_id=os.getenv('SPOTIFY_CLIENT_ID'), client_secret=os.getenv('SPOTIFY_SECRET')))
+                qText = post_link
+                qArtist, qSong = qText.split('-')
+                tracks = sp.search(q='artist:' + qArtist + ' track:' + qSong, type='track')
+                track_id = tracks['tracks']['items'][0]['id']
+            else:
+                track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]
+        except:
+            track_id = None
+    else:
+        track_id = None
 
     if post_link.startswith('https'):
         track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]         
