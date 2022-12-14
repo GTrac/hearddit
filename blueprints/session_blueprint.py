@@ -127,14 +127,12 @@ def authorize():
         #need to create a placeholder for spotify users in db
         #need a unique username -> could just repeat passwords hashing
         #great user dosent exist salt and pepper password
-        hashed_bytes = bcrypt.generate_password_hash(username, int(os.getenv('BCRYPT_ROUNDS')))
-        new_username = hashed_bytes.decode('utf-8')
 
         #hash password
         hashed_bytes = bcrypt.generate_password_hash(user_email, int(os.getenv('BCRYPT_ROUNDS')))
         hashed_password = hashed_bytes.decode('utf-8')
         #save user
-        new_user = users(user_name=new_username, user_email= user_email, user_password=hashed_password)   
+        new_user = users(user_name=username, user_email= user_email, user_password=hashed_password)   
         db.session.add(new_user)
         db.session.commit()
 
