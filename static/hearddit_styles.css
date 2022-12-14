@@ -146,6 +146,7 @@ nav .searchbar{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 20%;
     
 }
 
@@ -153,6 +154,7 @@ nav .searchbar{
 .card-container{
     padding: 10px;
 }
+
 .hearddit-card{
     max-width: 900px !important;
     max-height: 500px !important;
@@ -163,6 +165,12 @@ nav .searchbar{
     border-radius: 10px !important;
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
     position: relative;
+}
+
+.hearddit-card iframe{
+    padding: 0px;
+    margin: 0%;
+    max-height: 100%
 }
 
 .hearddit-card-account{
@@ -193,6 +201,12 @@ nav .searchbar{
     font-size: 15px;
 }
 
+.hearddit-card .music-zone{
+    max-width:inherit;
+    max-height:inherit;
+    border-right: 10px;
+}
+
 .hearddit-card .title {
     background-color: #535353 !important;
     color: white;
@@ -200,7 +214,12 @@ nav .searchbar{
 
 .hearddit-card .subtitle{
     background-color: #535353 !important;
-    color: b3b3b3;
+    color: #b3b3b3;
+}
+
+.wp-block-embed-spotify .wp-block-embed__wrapper {
+	max-height: 200px;
+    border-radius: 0px;
 }
 
 .hearddit-card .content{
