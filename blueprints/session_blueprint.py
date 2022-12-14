@@ -140,7 +140,7 @@ def authorize():
 
         session['user'] = {
             'user_id': new_user.user_id,
-            'user_name': new_user.user_name
+            'user_name': username
         }
         return redirect('/')
     
