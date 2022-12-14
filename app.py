@@ -55,6 +55,7 @@ def community_page(com_name):
     all_posts = post_singleton.get_post_by_com(com_object.com_id)
     all_communities = com_singleton.get_all_coms()
     community_names = [com.com_name for com in all_communities]
+    username = 'notLoggedInError'
     if 'user' not in session:
         login = 'visible'
         logout = 'hidden'
@@ -133,7 +134,15 @@ def post_page(post_id):
     post_obj = posts.query.get(post_id)
     all_communities = com_singleton.get_all_coms()
     posted_comments = comments.query.filter(comments.post_id == post_id).all()
-    return render_template('card.html', post=post_obj, communities=all_communities, comments=posted_comments)
+    username='notLoggedIn'
+    if 'user' not in session:
+        login = 'visible'
+        logout = 'hidden'
+    else:
+        login = 'hidden'
+        logout = 'visible'
+        username=session.get('user')['user_name']
+    return render_template('card.html', post=post_obj, communities=all_communities, comments=posted_comments, login=login, logout=logout, username=username)
 
 @app.post('/post/<int:post_id>')
 def create_comment(post_id):

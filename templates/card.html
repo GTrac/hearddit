@@ -61,6 +61,7 @@
        {%endif%}
     </div>
   </div>
+{% if session.user %}
 <div class="card-container col-7" style="list-style-type: none;">
     <div class="hearddit-card-comment">
         <div class="mb-3">
@@ -72,6 +73,7 @@
         </form>
     </div>
 </div>
+{%endif%}
 {% for comment in comments %}
 <div class="card-container col-7" style="list-style-type: none;">
     <div class="hearddit-card-comment">
