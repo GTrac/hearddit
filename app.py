@@ -123,6 +123,9 @@ def create_post():
     else:
         track_id = None
 
+    if post_link.startswith('https'):
+        track_id = post_link[post_link.rfind('/'):].split('/',1)[1].split('?',1)[0]         
+        print(track_id)
     if post_title == ' ' or post_text == '':
         abort(400)
     new_post = posts(com_id=com_id, post_title=post_title, post_link=post_link, post_text=post_text, post_rating=1, track_id = track_id)
