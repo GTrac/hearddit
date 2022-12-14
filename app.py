@@ -1,5 +1,5 @@
 
-from flask import Flask, redirect, render_template, request, abort, session, url_for
+from flask import Flask, redirect, render_template, request, abort, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from src.models import db, users, community, posts, comments
 from src.repositories.community_repository import com_singleton
@@ -47,7 +47,7 @@ def index():
         logout = 'visible'
         username=session.get('user')['user_name']
     
-    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, possible_search = community_names)
+    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, autoComplete = community_names)
 
 @app.get('/c/<string:com_name>')
 def community_page(com_name):
@@ -68,23 +68,20 @@ def community_page(com_name):
 def user_search():
     print('made it')
     userQ = request.form.get("searchbar")
+    all_communities = com_singleton.get_all_coms()
+    community_names = [com.com_name for com in all_communities]
     print(userQ)
-    if 'search' in session:
-        session.pop('search')
-    if (userQ == None) or len(userQ) < 0:
-         return redirect('/')
+    if 'user' in session:
+        if (userQ == None) or len(userQ) < 0:
+            return redirect('/')
+        if (userQ in community_names):
+            return redirect('/c/{0}'.format(userQ))
+        else:
+            flash('Sub dosent exist\nWhy dont you create it!')
+            return redirect('/create/community')
     else:
-        search = True
-        isValid = community.query.filter_by(com_name = userQ).first()
-        if isValid:
-            session['search'] = {
-                'com_id' : isValid.com_id,
-                'com_name' : isValid.com_name
-            }
-            print(isValid.com_id)
-            print(isValid.com_name)
-    print('END')
-    return redirect('/')
+        flash('Please login or signup to experience all of hearddit')
+        return redirect('/')
 
 @app.get('/post')
 def save():
