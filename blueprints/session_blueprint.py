@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, abort, session, Blueprint, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
-from src.models import db, users, community, posts, user_comments
+from src.models import db, users, community, posts, comments
 from secuirty import bcrypt
 import os
 import base64

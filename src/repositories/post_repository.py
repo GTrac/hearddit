@@ -1,4 +1,4 @@
-from src.models import posts, db, user_comments, flag_comments
+from src.models import posts, db
 
 class post_repository:
 
@@ -18,7 +18,7 @@ class post_repository:
         db.session.commit()
         return new_post
     
-    
+    # Works best if it uses a title.
     def search_post(self, title):
         search = db.session.query(title)
 
@@ -27,17 +27,12 @@ class post_repository:
         else:
             return None
 
-    
+    # Needs a post_id for this to be possible.
     def delete_post(post_id):
         db.session.delete(post_id)
         db.session.commit()
         return post_id
 
-    def create_comment(comment_text, flagged_comment):
-        # Use comments class.
-        new_comment = user_comments(comment_text=comment_text, flagged_comment=flagged_comment)
-        db.session.add(new_comment)
-        db.session.commit()
-        return new_comment
-    
+
+
 post_singleton = post_repository()
