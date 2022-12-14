@@ -92,7 +92,7 @@ def save():
 def get_create_post():
     # Return this here in the get route.
     all_communities = com_singleton.get_all_coms()  
-    return render_template('create_post.html', communities=all_communities)
+    return render_template('create_post.html', communities=all_communities, username=session.get('user')['user_name'])
 
 @app.post('/create/post')
 def create_post():
@@ -144,3 +144,26 @@ def delete_post(post_id):
     db.session.commit()
 
     return redirect('/')
+
+
+# Community stuff
+@app.get('/create/community')
+def get_create_community():
+    all_communities = com_singleton.get_all_coms()  
+    return render_template('create_com.html', communities=all_communities, username=session.get('user')['user_name'])
+
+
+
+@app.post('/create/community')
+def create_community():
+    com_name = request.form.get('comname')
+    all_communities = com_singleton.get_all_coms()
+    community_names = [com.com_name.upper() for com in all_communities]
+    if not com_name.upper() in community_names:
+        new_com = community(com_name=com_name, user_id=session.get('user')['user_id'], com_total_users=0)
+        db.session.add(new_com)
+        db.session.commit()
+        flash('/c/{0} created create its first post!'.format(com_name))
+        return redirect('/create/post')
+    flash('Community already exists')
+    return redirect('/create/community')
