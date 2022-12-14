@@ -64,11 +64,11 @@
 {% if session.user %}
 <div class="card-container col-7" style="list-style-type: none;">
     <div class="hearddit-card-comment">
+      <form action="/post/{{post.post_id}}" method="post">
         <div class="mb-3">
             <label for="comment_text" class="form-label">Enter Your Comment Below</label>
             <textarea class="form-control" id="comment_text" name="comment_text" rows="3"></textarea>
         </div>
-        <form action="/post/{{post.post_id}}" method="post">
             <button class="btn-hearddit-primary float-end">Post</button>
         </form>
     </div>
