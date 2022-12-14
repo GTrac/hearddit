@@ -104,7 +104,18 @@ nav .searchbar{
     fill: var(--hearddit-color-green);
 }
 
+.exit-button a{
+    float: right;
+    padding-bottom: 20%;
+    text-decoration: none;
+}
 
+.exit-button a svg:hover{
+    float: right;
+    padding-bottom: 20%;
+    text-decoration: none;
+    fill: #0047AB;
+}
 
 
 
