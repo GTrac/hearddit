@@ -146,8 +146,23 @@ nav .searchbar{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 20%;
+    margin-left: 15%;
     
+}
+
+.voting{
+    display: flex;
+}
+
+.voting ul{
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+.voting li{
+    align-self: flex-end;
+    float: left;
 }
 
 
@@ -225,4 +240,19 @@ nav .searchbar{
 .hearddit-card .content{
     background-color: #535353 !important;
     color: white;
+}
+
+.content-text{
+    min-height: 100%;
+}
+
+.content-text svg.bi-arrow-down:hover{
+    padding-bottom: 2px;
+    fill: #0047AB;
+    font-weight: bold;
+}
+
+.content-text svg.bi-arrow-up:hover{
+    padding-bottom: 2px;
+    fill: #1db954;
 }
