@@ -147,7 +147,7 @@ nav .searchbar{
     flex-direction: column;
     align-items: center;
     margin-left: 15%;
-    
+    overflow-y: hidden;
 }
 
 .voting{
