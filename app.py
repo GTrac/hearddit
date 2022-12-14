@@ -48,7 +48,7 @@ def index():
         logout = 'visible'
         username=session.get('user')['user_name']
     
-    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = all_posts, communities = all_communities, possible_search = community_names)
+    return render_template('home_page.html',login=login, logout=logout, username=username, list_posts = True, posts = reversed(all_posts), communities = all_communities, possible_search = community_names)
 
 @app.post('/search')
 def user_search():

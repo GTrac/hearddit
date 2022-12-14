@@ -12,6 +12,7 @@ router = Blueprint('session', __name__)
 #log in user
 @router.post('/login')
 def post_user_login():
+    session.clear()
     username = request.form.get('email')
     password = request.form.get('password')
 
@@ -41,7 +42,7 @@ def get_user_login():
 
 @router.post('/signup')
 def post_create_account():
-   
+    session.clear()
     email = request.form.get('email_input')
     email_confirm = request.form.get('email_confirm')
     username = request.form.get('enter_username')

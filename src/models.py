@@ -23,7 +23,7 @@ class community(db.Model):
 
 class posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
-    post_title = db.Column(db.String(50), nullable=False)
+    post_title = db.Column(db.String(75), nullable=False)
     post_link = db.Column(db.String(40000), nullable=True)
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)

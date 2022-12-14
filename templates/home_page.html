@@ -1,14 +1,41 @@
 {%extends '_layout.html'%}
 {%block body%}
   {% for post in posts %}
-  <div class="card-container col-7">
+  <div class="card-container col-7" style="list-style-type: none;">
     <div class="hearddit-card">
-          <h3 class="title"><a href="/{{post.post_link}}">{{post.com_name}}</a></h3>
-          <li class="divider"></li>
-          <h3 class="title">{{post.post_title}}</h3>
-          <h2 class="subtitle">Posted by u/{{post.user_id}}</h2>
-          <p class="content">{{post.post_text}}</p>
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{post.track_id}}?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <h3 class="title"><a href="/{{post.post_link}}">{{post.com_name}}</a></h3>
+      <h3 class="title">{{post.post_title}}</h3>
+      <h2 class="subtitle">Posted by u/{{post.user_id}}</h2>
+      <hr>
+      <div class="row d-flex">
+        <div class="col-7 content-text d-flex flex-column">
+          <div class="row m-1" style="min-height: 85%;">
+            <p class="content">{{post.post_text}}</p>
+          </div>
+          <div class="row m-1 voting">
+            <ul class="m-1">
+              <li>
+                <a href="/upvote" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="/downvote" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" style="font-weight:bolder;" width="25" height="25" fill="white" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+        <div class="col-5 music-zone">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{post.track_id}}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
     </div>
   </div>
   {%endfor%}
