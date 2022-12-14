@@ -1,5 +1,12 @@
 {%extends '_layout.html'%}
 {%block body%}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="alert alert-danger" role="alert" style="padding-top: 10px; min-width:900px; text-align: center;">
+          {{messages[0]}}
+      </div>
+  {% endif %}
+  {% endwith %}
   {% for post in posts %}
   <div class="card-container col-7" style="list-style-type: none;">
     <div class="hearddit-card">
