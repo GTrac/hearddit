@@ -193,6 +193,17 @@ nav .searchbar{
     position: relative;
 }
 
+.hearddit-card-comment{
+    max-width: 900px !important;
+    height: fit-content;
+    padding: 10px !important;
+    padding-bottom: 40px !important;
+    background-color: #535353 !important;
+    border-radius: 10px !important;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
 .hearddit-card iframe{
     padding: 0px;
     margin: 0%;

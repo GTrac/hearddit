@@ -27,16 +27,18 @@ class posts(db.Model):
     post_link = db.Column(db.String(40000), nullable=True)
     post_text = db.Column(db.String(40000), nullable=True)
     post_rating = db.Column(db.Integer, nullable=False)
-    com_id = db.Column(db.Integer, db.ForeignKey('community.com_id'),nullable=False)
+    com_id = db.Column(db.Integer, db.ForeignKey('community.com_id'), nullable=False)
+    user_name = db.Column(db.String(255), db.ForeignKey('users.user_name'), nullable=False)
     track_id = db.Column(db.String(255), nullable = True)
 
-    def __init__(self, post_title, post_link, post_text, post_rating, com_id, track_id) -> None:
+    def __init__(self, post_title, post_link, post_text, post_rating, com_id, track_id, user_name) -> None:
         self.post_title = post_title
         self.post_link = post_link
         self.post_text = post_text
         self.post_rating = post_rating
         self.com_id = com_id
         self.track_id = track_id
+        self.user_name = user_name
     
     # Added so I can use the class in post_repository.py
     def __repr__(self) -> str:
@@ -44,13 +46,20 @@ class posts(db.Model):
 
 class comments(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    user_name = db.Column(db.String(255), db.ForeignKey('users.user_name'), nullable=False)
     poster = db.relationship('users', backref='comments', lazy=True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable=False)
     post = db.relationship('posts', backref='comments', lazy=True)
-    reply_id = db.Column(db.Integer, nullable=False)
+    parent_id = db.Column(db.Integer, nullable=False)
     comment_text = db.Column(db.String(40000), nullable=False)
-    comment_rating = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, user_name, post_id, parent_id, comment_text) -> None:
+        self.user_name = user_name
+        self.post_id = post_id
+        self.parent_id = parent_id
+        self.comment_text = comment_text
+        self.rating = 1
     
 com_post = db.Table(
     'com_post',
@@ -68,7 +77,7 @@ user_com = db.Table(
         db.ForeignKey('users.user_id'), primary_key=True),
 )
 
-user_com = db.Table(
+mod_com = db.Table(
     'mod_com',
     db.Column('com_id', db.Integer, \
         db.ForeignKey('community.com_id'), primary_key=True),
